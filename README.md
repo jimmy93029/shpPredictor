@@ -8,11 +8,11 @@ Nanshan_tomb_image_segmentation
 本專題想透過航拍影像檔去擷取各個墳墓的位置分布，並透過物件偵測的技術來完成此目標。
 
 ## 專題目標
-1. (第一階段) 利用影像辨識製作出小影像檔的 mask 
+1. (第一階段) fine - tune 影像辨識的 model，並製作 fine -tuning 需要的 training data
 
-2. (第二階段) 將各個小影像檔合併成大圖，產出墓物件已遮罩的 png 檔
+2. (第二階段) 將影像辨識的 bounding box 結果對接到 samgeo 的 SamGeo 物件中，並產生 tif 檔的 mask 
 
-3. (第三階段) 將各個 mask 合併成圖層，並轉成可供 QGIS 分析的 shp 檔
+3. (第三階段) 將各個 mask 合併成圖層，轉成可供 QGIS 分析的 shp 檔
 
 4. (第四階段) 將上述流程整合，上傳到 Github
 
@@ -52,3 +52,5 @@ Nanshan_tomb_image_segmentation
     
      我懷疑是因為 tif 檔經裁切後資料遺失，而導致此問題
   * (問題 2) 將 小 tif 檔拼回去是否會影響 大 tif 檔的讀取 ? 或許檔案的拼接口會有斷層的情形 ?
+
+
