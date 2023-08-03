@@ -7,7 +7,7 @@ Nanshan_tomb_image_segmentation
 本專題想透過航拍影像檔去擷取各個墳墓的位置分布，並透過物件偵測的技術來完成此目標。
 
 ## 專題目標
-1. (第一階段) 利用 Grounding DINO + segment anything model 製作出小影像檔的 mask 
+1. (第一階段) (利用 Grounding DINO + segment anything model)(x) 製作出小影像檔的 mask  --> 目前正嘗試其他物件偵測的模型
 
 2. (第二階段) 將各個小影像檔合併成大圖，產出墓物件已遮罩的 png 檔
 
