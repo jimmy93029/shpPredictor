@@ -1,4 +1,4 @@
-# Nanshan_tomb_image_segmentation
+# 南山公墓專案計畫: 使用 SAMGEO 套件進行南山公墓航拍影像檔的墓物件辨識
 Nanshan_tomb_image_segmentation
 
 ![image](https://github.com/jimmy93029/Nanshan_tomb_image_segmentation/assets/107825203/ac9f5518-d541-4ca0-a3de-bbf53d48d32e)
@@ -8,7 +8,7 @@ Nanshan_tomb_image_segmentation
 本專題想透過航拍影像檔去擷取各個墳墓的位置分布，並透過物件偵測的技術來完成此目標。
 
 ## 專題目標
-1. (第一階段) 利用 Grounding DINO + segment anything model 製作出小影像檔的 mask 
+1. (第一階段) 利用影像辨識製作出小影像檔的 mask 
 
 2. (第二階段) 將各個小影像檔合併成大圖，產出墓物件已遮罩的 png 檔
 
