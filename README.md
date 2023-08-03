@@ -1,6 +1,7 @@
 # Nanshan_tomb_image_segmentation
 Nanshan_tomb_image_segmentation
 
+![image](https://github.com/jimmy93029/Nanshan_tomb_image_segmentation/assets/107825203/ac9f5518-d541-4ca0-a3de-bbf53d48d32e)
 
 ## 問題描述
 本專題想透過航拍影像檔去擷取各個墳墓的位置分布，並透過物件偵測的技術來完成此目標。
