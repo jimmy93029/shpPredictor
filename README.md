@@ -1,5 +1,5 @@
 # 南山公墓專案計畫: 使用 SAMGEO 套件進行南山公墓航拍影像檔的墓物件辨識
-Nanshan_tomb_image_segmentation
+專案工作的日誌如下: [暑期實習工作紀錄(下)](https://hackmd.io/@edy5wylvRnustuodZbspjw/HkT-7Kqjh)
 
 ![image](https://github.com/jimmy93029/Nanshan_tomb_image_segmentation/assets/107825203/ac9f5518-d541-4ca0-a3de-bbf53d48d32e)
 
