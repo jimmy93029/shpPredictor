@@ -2,6 +2,7 @@ from tqdm import tqdm
 from osgeo import gdal
 import numpy as np
 from glob import glob
+import os
 
 
 def read_tif(tif_path):
@@ -9,6 +10,7 @@ def read_tif(tif_path):
     row = ds.RasterXSize
     col = ds.RasterYSize
     band = ds.RasterCount
+    print("opening")
 
     for i in range(band):
         data = ds.GetRasterBand(i+1).ReadAsArray()
@@ -18,6 +20,8 @@ def read_tif(tif_path):
             allarrays = data
         else:
             allarrays = np.concatenate((allarrays, data), axis=2)
+
+        print(i)
     return {'data':allarrays,'transform':ds.GetGeoTransform(),'projection':ds.GetProjection(),'bands':band,'width':row,'height':col}
     # 左上角点坐标 GeoTransform[0],GeoTransform[3] Transform[1] is the pixel width, and Transform[5] is the pixel height
 
@@ -111,10 +115,11 @@ def write_tif(fn_out, im_data, transform,proj=None):
 
 
 
-def split(origin_data,origin_transform,output_size):
+def split(origin_data,origin_transform,output_size,dirname):
+    os.mkdir(f"{dirname}")
     origin_size = origin_data.shape
-    output_size[0] = origin_size[0] // 8
-    output_size[1] = origin_size[1]
+    # output_size[0] = 400
+    # output_size[1] = 400
     x = origin_transform[0]
     y = origin_transform[3]
     x_step = origin_transform[1]
@@ -126,11 +131,20 @@ def split(origin_data,origin_transform,output_size):
             output_data = origin_data[i * output_size[0]:(i+1) * output_size[0], j * output_size[1]:(j+1) * output_size[1] ,:]
             output_transform = (x + j * output_x_step * output_size[0], output_x_step,0, y + i* output_y_step *output_size[0], 0, output_y_step)
 
-            write_tif(f'test2/{i}_{j}.tif', output_data, output_transform)
+            write_tif(f'test3/{i}_{j}.tif', output_data, output_transform)
+            print(f"finish test3/{i}_{j}.tif")
 
 
-data = read_tif('NanShang_Tomb_cp.tif')
-split(origin_data=data['data'],origin_transform=data['transform'], output_size=[0,0])
+# read tiff file
+print("into")
+data = read_tif('NanShang_Tomb3.tif')
+print("finishing data reading")
 
+# please specify the dirname you want to make ,and the output size of your picture 
+cwd = os.getcwd()
+dirname = os.path.join(cwd, "test3") 
+output_size = [700, 700]
 
-# def write_tif(fn_out, im_data, transform,proj=None):
+# strat splitting 
+split(origin_data=data['data'],origin_transform=data['transform'], output_size=output_size, dirname=dirname)
+print("all finishing")
