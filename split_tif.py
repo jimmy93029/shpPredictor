@@ -140,7 +140,7 @@ print("into")
 data = read_tif('NanShang_Tomb3.tif')
 print("finishing data reading")
 
-# please specify the dirname you want to make ,and the output size of your picture 
+# please specify the dirname you want to make and the output size of your picture 
 cwd = os.getcwd()
 dirname = os.path.join(cwd, "test3") 
 output_size = [700, 700]
