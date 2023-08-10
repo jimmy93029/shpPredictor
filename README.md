@@ -58,5 +58,4 @@
    -> 首先要將 JPG -> TIFF ( 用  [Aspose.Words for Python via .NET](https://products.aspose.com/words/python-net/conversion/jpg-to-tiff/) 套件轉檔)
    -> 對 TIFF 做 georeference
    -> 再將 TIFF -> SHP ( 用 [samgeo.common.raster_to_shp()](https://samgeo.gishub.org/common/#samgeo.common.raster_to_shp) 轉檔)
-   
   
