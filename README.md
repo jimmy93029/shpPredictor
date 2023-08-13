@@ -1,6 +1,8 @@
+工作日誌見: [暑期實習工作紀錄(下)](https://hackmd.io/4-6B5csBRse1M1rgLHU1Iw)
 
 ## 問題描述
 本專題想透過航拍影像檔去擷取各個墳墓的位置分布，並透過物件偵測的技術來完成此目標。
+
 
 ## 專題目標
 1. (第一階段) [fine - tune 影像辨識的 model](https://github.com/jimmy93029/Nanshan_tomb_image_segmentation/blob/main/notebooks/yolo-nas_plus_SAM-(part1).ipynb)，並[製作 fine -tuning 需要的 training data](https://app.roboflow.com/wu-d4pdk/nanshang_tomb/2)
@@ -13,6 +15,7 @@
 
 5. (第五階段) 製作 jupyter book profile  
 
+
 &emsp;
 ## 遇到的問題
 
@@ -20,7 +23,6 @@
 
    * 發現 ASGCCA 雲端計算環境有 python 版本和 套件 conflict 的問題
    * 目前改用 google colab pro
-
 
 
 * **選擇合適的影像辨識方法**
@@ -35,7 +37,6 @@
   
   * ==(目前)== 想[使用 YOLO-NAS 做 object detection](https://blog.roboflow.com/yolo-nas-how-to-train-on-custom-dataset/)，並[用 SAM 輸出 tif 檔的 mask](https://samgeo.gishub.org/examples/input_prompts/)
 
-
   
 * **切割 tif 檔的理由與衍伸問題**
 
@@ -49,10 +50,12 @@
    -> 放大圖片讓模型更清楚地檢驗圖片，但同時也會增加被邊界分割的墓物件。這是一個 trade-off
    -> 其實讓模型能辨識 "被邊框切割的墓物件" 就行了
 
+
 * **怎麼製備 fine-tune 用的 training data ?**
   -> 先將 tif 檔[裁切成小塊的 tif](https://github.com/jimmy93029/Nanshan_tomb_image_segmentation/blob/main/split_tif.py) ，再[轉成 jpg](https://github.com/jimmy93029/Nanshan_tomb_image_segmentation/blob/main/tif2jpg.py) 
   -> 再用 [Roboflow 來 label 資料](https://universe.roboflow.com/wu-d4pdk/nanshang_tomb)
   -> 依據 model 預測不足的物件再餵多一點資料 (像是我們的model 常誤判房屋上的水塔為墓物件，因此我多給它一些 Null 資料以提升其判斷 Null 的能力)
+
   
 * **要怎麼 mask ( jpg檔 ) 轉換成 QGIS 可讀的 shp 檔** (預計)
    -> 首先要將 JPG -> TIFF ( 用  [Aspose.Words for Python via .NET](https://products.aspose.com/words/python-net/conversion/jpg-to-tiff/) 套件轉檔)
