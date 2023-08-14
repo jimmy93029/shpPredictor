@@ -5,6 +5,7 @@ from .step import Step
 from ...settings import SPLITED_TIFS_DIR, MASK_DIR
 from segment_anything import sam_model_registry, SamPredictor
 import supervision as sv
+from PIL import Image
 
 
 class Predict_mask(Step):
@@ -15,18 +16,21 @@ class Predict_mask(Step):
         mask_annotator = sv.MaskAnnotator()
 
         for tif in tifs_dir:
+            # read tif as numpy array
             image = tifffile.imread(tif)
             img_array = np.array(image)
 
+            # make detection's mask
             data["detection"][tif].mask = self.segment(
                 sam_predictor=sam_predictor,
                 image=img_array.copy(),
                 xyxy=data["detection"][tif].xyxy)
 
+            # produce mask and save as image
             blank = np.zeros_like(img_array)
             mask = mask_annotator.annotate(scene=blank, detections=data["detection"][tif])
-
-            ## continue after checking
+            img = Image.fromarray(mask, "RGB")
+            img.save(os.path.join(MASK_DIR, tif[:-4] + ".jpg"))
 
     def segment(self, sam_predictor: "SamPredictor", image: np.ndarray, xyxy: np.ndarray) -> np.ndarray:
         sam_predictor.set_image(image)

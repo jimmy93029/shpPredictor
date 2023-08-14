@@ -16,19 +16,22 @@ class Predict_bounding_box(Step):
         data["detections"] = {}
 
         for tif in tifs_dir:
+            # read tif as numpy array
             image = tifffile.imread(tif)
             img_array = np.array(image)
 
+            # predict bounding box
             result = list(box_predictor.predict(img_array, conf=inputs["confidence_threshold"]))[0]
             boxes = result.prediction.bboxes_xyxy
 
+            # make sv.Detections
             detection = sv.Detections(
                 xyxy=boxes,
                 confidence=result.prediction.confidence,
                 class_id=result.prediction.labels.astype(int)
             )
-
             data["detections"][tif] = detection
+
         return data
 
     def load_object_detection_model(self, model_arch: str, num_classes: int, checkpoint_path: str, device: str):
