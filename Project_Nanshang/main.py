@@ -8,5 +8,6 @@ inputs = {
     "device": 0,
     "confidence_threshold": 0,
     "sam_encoder_version": 0,
-
+    "source_tiffile": 0,
+    "tile_size": 0
 }

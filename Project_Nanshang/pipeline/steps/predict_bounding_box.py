@@ -7,7 +7,7 @@ from super_gradients.training import models
 import supervision as sv
 
 
-class Predict_bounding_box(Step):
+class PredictBoundingBox(Step):
 
     def process(self, data: dict, inputs: dict):
         tifs_dir = os.listdir(SPLITED_TIFS_DIR)

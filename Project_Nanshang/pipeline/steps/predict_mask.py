@@ -8,7 +8,7 @@ import supervision as sv
 from PIL import Image
 
 
-class Predict_mask(Step):
+class PredictMask(Step):
 
     def process(self, data: dict, inputs: dict):
         tifs_dir = os.listdir(SPLITED_TIFS_DIR)
@@ -30,7 +30,7 @@ class Predict_mask(Step):
             blank = np.zeros_like(img_array)
             mask = mask_annotator.annotate(scene=blank, detections=data["detection"][tif])
             img = Image.fromarray(mask, "RGB")
-            img.save(os.path.join(MASK_DIR, tif[:-4] + ".jpg"))
+            img.save(os.path.join(MASK_DIR, "mask" + tif[4:8] + ".jpg"))
 
     def segment(self, sam_predictor: "SamPredictor", image: np.ndarray, xyxy: np.ndarray) -> np.ndarray:
         sam_predictor.set_image(image)
