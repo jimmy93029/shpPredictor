@@ -6,5 +6,7 @@ inputs = {
     "num_classes": 0,
     "checkpoint_path": 0,
     "device": 0,
-    "confidence_threshold": 0
+    "confidence_threshold": 0,
+    "sam_encoder_version": 0,
+
 }
