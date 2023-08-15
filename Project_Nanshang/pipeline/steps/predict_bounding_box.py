@@ -15,6 +15,7 @@ class PredictBoundingBox(Step):
                                                  inputs["checkpoint_path"], inputs["device"])
         data["detections"] = {}
 
+        num_tombs = 0
         for tif in tifs_dir:
             # read tif as numpy array
             image = tifffile.imread(tif)
@@ -23,6 +24,7 @@ class PredictBoundingBox(Step):
             # predict bounding box
             result = list(box_predictor.predict(img_array, conf=inputs["confidence_threshold"]))[0]
             boxes = result.prediction.bboxes_xyxy
+            num_tombs += len(boxes)  # compute the number of tombs
 
             # make sv.Detections
             detection = sv.Detections(
@@ -32,13 +34,14 @@ class PredictBoundingBox(Step):
             )
             data["detections"][tif] = detection
 
+        print(f"the number of tombs is {num_tombs}")
         return data
 
     def load_object_detection_model(self, model_arch: str, num_classes: int, checkpoint_path: str, device: str):
 
         trained_model = models.get(
             model_arch,
-            num_classes= num_classes,
+            num_classes=num_classes,
             checkpoint_path=checkpoint_path
         ).to(device)
 
