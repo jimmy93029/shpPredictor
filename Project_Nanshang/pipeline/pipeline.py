@@ -10,6 +10,7 @@ class Pipeline:
         data = None
 
         for step in self.steps:
+            print(f"I'm now in {step}")
             try:
                 data = step.process(data, inputs)
             except StepException as e:

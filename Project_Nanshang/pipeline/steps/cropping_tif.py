@@ -1,8 +1,6 @@
 from .step import Step
 from samgeo.common import split_raster
-from ...settings import SPLITED_TIFS_DIR
-import os
-import numpy as np
+from Project_Nanshang.pipeline.settings import SPLITED_TIFS_DIR
 
 
 class CroppingTif(Step):

@@ -1,5 +1,5 @@
 from .step import Step
-from ...settings import COMPLETE_MASK_JPG,  COMPLETE_MASK_TIFF,  COMPLETE_MASK_GEOTIFF
+from Project_Nanshang.pipeline.settings import COMPLETE_MASK_JPG,  COMPLETE_MASK_TIFF,  COMPLETE_MASK_GEOTIFF
 import aspose.words as aw
 from rasterio.transform import from_origin
 import rasterio
