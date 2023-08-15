@@ -34,7 +34,9 @@ class PredictBoundingBox(Step):
             )
             data["detections"][tif] = detection
 
+        # finally we get the total number of tombs
         print(f"the number of tombs is {num_tombs}")
+        data["num_tombs"] = num_tombs
         return data
 
     def load_object_detection_model(self, model_arch: str, num_classes: int, checkpoint_path: str, device: str):

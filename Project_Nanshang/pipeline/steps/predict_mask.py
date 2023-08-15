@@ -12,7 +12,8 @@ class PredictMask(Step):
 
     def process(self, data: dict, inputs: dict):
         tifs_dir = os.listdir(SPLITED_TIFS_DIR)
-        sam_predictor = self.load_segment_anything_model(inputs["sam_encoder_version"], inputs["device"])
+        sam_predictor = self.load_segment_anything_model(inputs["sam_encoder_version"], inputs["sam_checkpoint_path"],
+                                                         inputs["device"])
         mask_annotator = sv.MaskAnnotator()
 
         for tif in tifs_dir:
@@ -45,8 +46,8 @@ class PredictMask(Step):
             result_masks.append(masks[index])
         return np.array(result_masks)
 
-    def load_segment_anything_model(self, sam_encoder_version, device):
-        sam = sam_model_registry[sam_encoder_version](checkpoint=sam_encoder_version).to(device=device)
+    def load_segment_anything_model(self, sam_encoder_version, sam_checkpoint_path, device):
+        sam = sam_model_registry[sam_encoder_version](checkpoint=sam_checkpoint_path).to(device=device)
         sam_predictor = SamPredictor(sam)
         return sam_predictor
 
