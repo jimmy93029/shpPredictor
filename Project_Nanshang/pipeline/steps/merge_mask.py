@@ -15,9 +15,9 @@ class MergeMask(Step):
         # collage small image to a complete image
         for mask_filename in mask_dir:
             im = Image.open(mask_filename)
-            i = int(mask_filename[5])
-            j = int(mask_filename[7])
-            img.paste(im, (j * size, i * size))
+            i = int(mask_filename[5])      # the 5th str indicate the order in x ray
+            j = int(mask_filename[7])      # the 7th str indicate the order in y ray (see samgeo.common.split_raster())
+            img.paste(im, (i * size, j * size))
 
         img.save(COMPLETE_MASK_JPG)
         return data
