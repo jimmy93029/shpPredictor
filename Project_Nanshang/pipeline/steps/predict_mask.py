@@ -49,3 +49,6 @@ class PredictMask(Step):
         sam = sam_model_registry[sam_encoder_version](checkpoint=sam_encoder_version).to(device=device)
         sam_predictor = SamPredictor(sam)
         return sam_predictor
+
+    def __str__(self):
+        return "PredictMask"

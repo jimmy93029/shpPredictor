@@ -18,7 +18,7 @@ class PredictBoundingBox(Step):
         num_tombs = 0
         for tif in tifs_dir:
             # read tif as numpy array
-            image = tifffile.imread(tif)
+            image = tifffile.imread(os.path.join(SPLITED_TIFS_DIR, tif))
             img_array = np.array(image)
 
             # predict bounding box
@@ -46,3 +46,6 @@ class PredictBoundingBox(Step):
         ).to(device)
 
         return trained_model
+
+    def __str__(self):
+        return "PredictBoundingBox"

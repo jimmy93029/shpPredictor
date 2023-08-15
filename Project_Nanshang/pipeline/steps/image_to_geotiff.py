@@ -52,6 +52,8 @@ class Image2Geotiff(Step):
         ) as dst:
             dst.write(data)
 
+    def __str__(self):
+        return "Image2Geotiff"
 
 
 

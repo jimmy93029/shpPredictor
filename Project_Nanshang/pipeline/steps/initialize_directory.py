@@ -21,4 +21,5 @@ class InitializeDir(Step):
         if not os.path.exists(OUTPUT_DIR):
             os.makedirs(OUTPUT_DIR)
 
-
+    def __str__(self):
+        return "InitializeDir"

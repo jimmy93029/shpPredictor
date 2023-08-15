@@ -7,12 +7,12 @@ class Pipeline:
         self.steps = steps
 
     def pipeline(self, inputs: dict):
-        data = None
+        data = {}
 
         for step in self.steps:
             print(f"I'm now in {step}")
             try:
-                data = step.process(data, inputs)
+                data = step.process(data=data, inputs=inputs)
             except StepException as e:
                 print(e, "happened in", step)
                 break

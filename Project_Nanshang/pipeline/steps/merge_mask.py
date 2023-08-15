@@ -28,5 +28,6 @@ class MergeMask(Step):
         col = ds.RasterYSize
         return row, col
 
-
+    def __str__(self):
+        return "MergeMask"
 

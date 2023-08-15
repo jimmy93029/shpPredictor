@@ -17,7 +17,7 @@ def main():
         "device": 'cuda' if torch.cuda.is_available() else "cpu",
         "confidence_threshold": 0.35,
         "sam_encoder_version": "vit_h",
-        "source_tiffile": "C:\\Users\\ACER\\Desktop\\Project\\average_model.pth\\NanShang_Tomb_cp.tif",
+        "source_tiffile": "C:\\coding\\python\\Project_Nanshang\\Project_Nanshang\\NanShang_Tomb_cp.tif",
         "tile_size": 700,
         "top_left_lat": 22.97494,
         "top_left_lon": 120.19544,
@@ -26,17 +26,17 @@ def main():
 
     }
 
-    steps = [InitializeDir,
-             CroppingTif,
-             PredictBoundingBox,
-             PredictMask,
-             MergeMask,
-             Image2Geotiff,
-             Geotiff2shp
+    steps = [InitializeDir(),
+             CroppingTif(),
+             PredictBoundingBox(),
+             PredictMask(),
+             MergeMask(),
+             Image2Geotiff(),
+             Geotiff2shp()
              ]
 
     p = Pipeline(steps)
-    p.pipeline(inputs)
+    p.pipeline(inputs=inputs)
 
 
 if __name__ == "__main__":

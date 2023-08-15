@@ -19,3 +19,5 @@ class Geotiff2shp(Step):
         os.makedirs(output_dir)
         return output_dir
 
+    def __str__(self):
+        return "Geotiff2shp"

@@ -8,3 +8,6 @@ class CroppingTif(Step):
         split_raster(inputs["source_tiffile"], SPLITED_TIFS_DIR, tile_size=inputs["tile_size"])
         return data
 
+    def __str__(self):
+        return "CroppingTif"
+
