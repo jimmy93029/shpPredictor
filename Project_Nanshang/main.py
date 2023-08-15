@@ -9,5 +9,10 @@ inputs = {
     "confidence_threshold": 0,
     "sam_encoder_version": 0,
     "source_tiffile": 0,
-    "tile_size": 0
+    "tile_size": 0,
+    "top_left_lat": 0,
+    "top_left_lon":0,
+    "below_right_lat": 0,
+    "below_right_lon": 0,
+
 }

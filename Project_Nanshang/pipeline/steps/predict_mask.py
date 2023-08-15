@@ -1,8 +1,8 @@
-import os
-import tifffile
-import numpy as np
 from .step import Step
 from ...settings import SPLITED_TIFS_DIR, MASK_DIR
+import os
+import numpy as np
+import tifffile
 from segment_anything import sam_model_registry, SamPredictor
 import supervision as sv
 from PIL import Image
@@ -31,6 +31,7 @@ class PredictMask(Step):
             mask = mask_annotator.annotate(scene=blank, detections=data["detection"][tif])
             img = Image.fromarray(mask, "RGB")
             img.save(os.path.join(MASK_DIR, "mask" + tif[4:8] + ".jpg"))
+        return data
 
     def segment(self, sam_predictor: "SamPredictor", image: np.ndarray, xyxy: np.ndarray) -> np.ndarray:
         sam_predictor.set_image(image)

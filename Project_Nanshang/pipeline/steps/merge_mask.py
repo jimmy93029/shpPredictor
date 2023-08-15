@@ -1,8 +1,7 @@
 import os
-import numpy as np
 from .step import Step
-import gdal
-from ...settings import MASK_DIR
+from osgeo import gdal
+from ...settings import MASK_DIR, COMPLETE_MASK_JPG
 from PIL import Image
 
 
@@ -13,13 +12,15 @@ class MergeMask(Step):
         img = Image.new("RGB", (width, height))
         mask_dir = os.listdir(MASK_DIR)
 
+        # collage small image to a complete image
         for mask_filename in mask_dir:
             im = Image.open(mask_filename)
             i = int(mask_filename[5])
             j = int(mask_filename[7])
             img.paste(im, (j * size, i * size))
 
-        img.save("complete_mask.jpg")
+        img.save(COMPLETE_MASK_JPG)
+        return data
 
     def read_tif(self, tif_path):
         ds = gdal.Open(tif_path)
