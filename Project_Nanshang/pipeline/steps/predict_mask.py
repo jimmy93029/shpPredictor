@@ -18,20 +18,20 @@ class PredictMask(Step):
 
         for tif in tifs_dir:
             # read tif as numpy array
-            image = tifffile.imread(tif)
+            image = tifffile.imread(os.path.join(SPLITED_TIFS_DIR, tif))
             img_array = np.array(image)
 
             # make detection's mask
-            data["detection"][tif].mask = self.segment(
+            data["detections"][tif].mask = self.segment(
                 sam_predictor=sam_predictor,
                 image=img_array.copy(),
-                xyxy=data["detection"][tif].xyxy)
+                xyxy=data["detections"][tif].xyxy)
 
             # produce mask and save as image
             blank = np.zeros_like(img_array)
             mask = mask_annotator.annotate(scene=blank, detections=data["detection"][tif])
             img = Image.fromarray(mask, "RGB")
-            img.save(os.path.join(MASK_DIR, "mask" + tif[4:8] + ".jpg"))
+            img.save(os.path.join(MASK_DIR, "mask" + tif[4:-4] + ".jpg"))
         return data
 
     def segment(self, sam_predictor: "SamPredictor", image: np.ndarray, xyxy: np.ndarray) -> np.ndarray:
