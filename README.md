@@ -56,7 +56,7 @@
   -> 依據 model 預測不足的物件再餵多一點資料 (像是我們的model 常誤判房屋上的水塔為墓物件，因此我多給它一些 Null 資料以提升其判斷 Null 的能力)
   
 * **要怎麼 mask ( jpg檔 ) 轉換成 QGIS 可讀的 shp 檔** (預計)
-
+/
    -> 首先要將 JPG -> TIFF ( 用  [Aspose.Words for Python via .NET](https://products.aspose.com/words/python-net/conversion/jpg-to-tiff/) 套件轉檔)
    -> 對 TIFF 做 georeference
    -> 再將 TIFF -> SHP ( 用 [samgeo.common.raster_to_shp()](https://samgeo.gishub.org/common/#samgeo.common.raster_to_shp) 轉檔)
