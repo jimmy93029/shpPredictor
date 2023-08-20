@@ -5,5 +5,5 @@ format: jb-book
 root: intro
 chapters:
 - file: markdown
-- file: Nanshan_tomb_image_segmentation/Training_object_detection_model_workbook.ipynb
-- file: Nanshan_tomb_image_segmentation/Predicting_mask_for_tifimage.ipynb
+- file: Training_object_detection_model_workbook
+- file: Predicting_mask_for_tifimage
