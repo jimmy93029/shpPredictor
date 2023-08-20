@@ -1,6 +1,6 @@
 from .step import Step
 import os
-from Project_Nanshang.pipeline.settings import COMPLETE_MASK_GEOTIFF, OUTPUT_DIR
+from Nanshan_tomb_image_segmentation.Project_Nanshang.pipeline.settings import COMPLETE_MASK_GEOTIFF, OUTPUT_DIR
 from samgeo.common import raster_to_shp
 
 
