@@ -23,7 +23,6 @@
    * 目前改用 google colab pro
 
 
-
 * **選擇合適的影像辨識方法**
 
   * 發現 segment anything model 只專注於切割影像，並不能幫我們辨識墓物件的位置 
@@ -37,7 +36,6 @@
   * ==(目前)== 想[使用 YOLO-NAS 做 object detection](https://blog.roboflow.com/yolo-nas-how-to-train-on-custom-dataset/)，並[用 SAM 輸出 tif 檔的 mask](https://samgeo.gishub.org/examples/input_prompts/)
 
 
-  
 * **切割 tif 檔的理由與衍伸問題**
 
   * 為了讓計算環境 (colab pro) 可以跑得動 和提高影像辨識的準確度，我將大的 tif 切割成小的 tif 檔。
@@ -55,8 +53,7 @@
   -> 再用 [Roboflow 來 label 資料](https://universe.roboflow.com/wu-d4pdk/nanshang_tomb)
   -> 依據 model 預測不足的物件再餵多一點資料 (像是我們的model 常誤判房屋上的水塔為墓物件，因此我多給它一些 Null 資料以提升其判斷 Null 的能力)
   
-* **要怎麼 mask ( jpg檔 ) 轉換成 QGIS 可讀的 shp 檔** (預計)
-/
+* **要怎麼 mask ( jpg檔 ) 轉換成 QGIS 可讀的 shp 檔** 
    -> 首先要將 JPG -> TIFF ( 用  [Aspose.Words for Python via .NET](https://products.aspose.com/words/python-net/conversion/jpg-to-tiff/) 套件轉檔)
    -> 對 TIFF 做 georeference
    -> 再將 TIFF -> SHP ( 用 [samgeo.common.raster_to_shp()](https://samgeo.gishub.org/common/#samgeo.common.raster_to_shp) 轉檔)
