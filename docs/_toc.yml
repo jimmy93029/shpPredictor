@@ -4,6 +4,6 @@
 format: jb-book
 root: intro
 chapters:
-- file: markdown
-- file: Training_object_detection_model_workbook
-- file: Predicting_mask_for_tifimage
+- file: books/markdown
+- file: books/Training_object_detection_model_resultbook
+- file: books/Predicting_mask_for_tifimage
