@@ -28,10 +28,4 @@
 google colab，已啟用 Colab 環境執行程式
 
 請確認使用裝置有足夠 GPU。依據檔案大小，使用模型所需的 GPU 大小也不一 
-        
-   * 使用 Roboflow Preprocessing、Augmentation 亂用的功能:
-        1. Resize : resize 會把原圖 (1200 * 1200) 壓縮 (成 700 * 700)。使用它會導致照片中的墓變得不好讀取
-        2. Static Crop : static crop 會把照片的一部擷取出來。換言之，另一部分會被捨棄掉。我似乎就這樣將一些我好不容易標出來的墓裁掉了 
-
-   * 另外，Roboflow Preprocessing 中的 Isolate Objects 功能可以將 bouning box 物件分離出來，這樣有助於模型做影像辨識
  
