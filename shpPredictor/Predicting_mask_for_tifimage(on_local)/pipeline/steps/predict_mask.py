@@ -1,5 +1,5 @@
 from .step import Step
-from Nanshan_tomb_image_segmentation.Project_Nanshang.pipeline.settings import SPLITED_TIFS_DIR, MASK_DIR
+from shpPredictor.Project_Nanshang.pipeline.settings import SPLITED_TIFS_DIR, MASK_DIR
 import os
 import numpy as np
 import tifffile

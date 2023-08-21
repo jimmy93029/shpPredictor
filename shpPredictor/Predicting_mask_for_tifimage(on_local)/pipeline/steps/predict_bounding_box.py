@@ -2,7 +2,7 @@ import os
 import tifffile
 import numpy as np
 from .step import Step
-from Nanshan_tomb_image_segmentation.Project_Nanshang.pipeline.settings import SPLITED_TIFS_DIR
+from shpPredictor.Project_Nanshang.pipeline.settings import SPLITED_TIFS_DIR
 from super_gradients.training import models
 import supervision as sv
 

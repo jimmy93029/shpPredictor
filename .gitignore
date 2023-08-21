@@ -1,8 +1,8 @@
 # dir that don't want to be push
 venv/
-Nanshan_tomb_image_segmentation/Project_Nanshang/storehouse/
-Nanshan_tomb_image_segmentation/Project_Nanshang/resources
-Nanshan_tomb_image_segmentation/Project_Nanshang/output
+shpPredictor/Predicting_mask_for_tifimage(on_local)/storehouse/
+shpPredictor/Predicting_mask_for_tifimage(on_local)/resources
+shpPredictor/Predicting_mask_for_tifimage(on_local)/output
 
 # ignore .idea/
 .idea/

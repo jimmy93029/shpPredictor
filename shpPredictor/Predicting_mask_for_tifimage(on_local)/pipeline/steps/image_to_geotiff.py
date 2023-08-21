@@ -1,5 +1,5 @@
 from .step import Step
-from Nanshan_tomb_image_segmentation.Project_Nanshang.pipeline.settings import COMPLETE_MASK_JPG,  COMPLETE_MASK_TIFF,  COMPLETE_MASK_GEOTIFF
+from shpPredictor.Project_Nanshang.pipeline.settings import COMPLETE_MASK_JPG,  COMPLETE_MASK_TIFF,  COMPLETE_MASK_GEOTIFF
 import aspose.words as aw
 from rasterio.transform import from_origin
 import rasterio
