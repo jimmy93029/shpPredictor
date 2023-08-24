@@ -2,7 +2,7 @@ import os
 import tifffile
 import numpy as np
 from .step import Step
-from shpPredictor.Project_Nanshang.pipeline.settings import SPLITED_TIFS_DIR
+from ..settings import SPLITED_TIFS_DIR
 from super_gradients.training import models
 import supervision as sv
 

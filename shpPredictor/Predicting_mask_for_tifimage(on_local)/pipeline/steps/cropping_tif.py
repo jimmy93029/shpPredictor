@@ -1,6 +1,6 @@
 from .step import Step
 from samgeo.common import split_raster
-from shpPredictor.Project_Nanshang.pipeline.settings import SPLITED_TIFS_DIR
+from ..settings import SPLITED_TIFS_DIR
 
 
 class CroppingTif(Step):

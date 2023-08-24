@@ -1,5 +1,5 @@
 from .step import Step
-from shpPredictor.Project_Nanshang.pipeline.settings import SPLITED_TIFS_DIR, MASK_DIR
+from ..settings import SPLITED_TIFS_DIR, MASK_DIR
 import os
 import numpy as np
 import tifffile

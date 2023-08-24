@@ -1,5 +1,5 @@
 from .step import Step
-from shpPredictor.Project_Nanshang.pipeline.settings import OUTPUT_DIR, STOREHOUSE, SPLITED_TIFS_DIR, MASK_DIR
+from ..settings import OUTPUT_DIR, STOREHOUSE, SPLITED_TIFS_DIR, MASK_DIR
 import os
 import shutil
 

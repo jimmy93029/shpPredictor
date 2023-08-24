@@ -1,7 +1,7 @@
 import os
 from .step import Step
 from osgeo import gdal
-from shpPredictor.Project_Nanshang.pipeline.settings import MASK_DIR, COMPLETE_MASK_JPG
+from ..settings import MASK_DIR, COMPLETE_MASK_JPG
 from PIL import Image
 
 
