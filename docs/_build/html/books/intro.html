@@ -140,8 +140,8 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/shpPredictor.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/shpPredictor.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
   
   
 </a></div>
@@ -161,6 +161,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">how to use this module</span></p>
 <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="detail.html">程式碼重要資訊講解</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Training_object_detection_model_resultbook.html">Training object detection model resultbook</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Predicting_mask_for_tifimage.html">Predicting_mask_for_tifimage_workbook</a></li>
 </ul>
@@ -217,7 +218,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+      <li><a href="https://github.com/jimmy93029/shpPredictor.git" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -234,7 +235,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fbooks/intro.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/jimmy93029/shpPredictor.git/issues/new?title=Issue%20on%20page%20%2Fbooks/intro.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -394,12 +395,11 @@ document.write(`
 <section id="id3">
 <h2>shpPredictor 如何取用<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>使用 shpPredictor 的方法有二</p></li>
+<li><p>使用 shpPredictor 的步驟</p></li>
 </ul>
 <ol class="arabic simple">
-<li><p>使用 Predicting_mask_for_tifimage(on_local)。將 inputs 所需資料被妥後，可以進到 <a class="reference external" href="http://main.py">main.py</a> 來產生 shp 檔</p></li>
-<li><p>使用 Training_object_detection_model_workbook.ipynb 和 Predicting_mask_for_tifimage.ipynb。可以將檔案上傳至
-google colab，已啟用 Colab 環境執行程式</p></li>
+<li><p>先進到 Training_object_detection_model_workbook.ipynb 產製物件偵測模型，並將模型儲存下來</p></li>
+<li><p>再到 Predicting_mask_for_tifimage.ipynb 輸入欲預測之航拍圖 ，以產生物件遮罩 shp 檔</p></li>
 </ol>
 <p>請確認使用裝置有足夠 GPU。依據檔案大小，使用模型所需的 GPU 大小也不一</p>
 </section>
