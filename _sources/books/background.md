@@ -7,7 +7,7 @@
 
 由於公墓的分布又密又擠，導致物件的偵測有些難度。這也是此影像檔帶給我的挑戰之一
 
-![img.png](Nanshantomb.png)
+![img.png](image/Nanshantomb.png)
 
 
 &emsp;
@@ -15,7 +15,7 @@
 yolo - nas 推出於 2023 年 3 月，是一個建立在 yolo - v8 之上的物件偵測模型。它利用 Neural architecture search 的方法搜索出了
 兼具準確率與 速度的模型，而且相比於其他 yolo 模型，它在不損失掉精準度的狀況下速度有明顯提升 (如下圖)。
 
-![img.png](yolo_nas_frontier.png)
+![img.png](image/yolo_nas_frontier.png)
 
 #### ps: Neural architecture search (NAS)
 neural architecture search 旨在透過機器學習的方法搜索出最佳化的模型架構。以往模型的架構都是人手動調整出來的，所以產出的模型雖然效果
@@ -30,7 +30,7 @@ SAM　提出於 2023 年 4 月，是一個語意分割模型 (Semantic segmentat
 此外，SAM 也具有 zero-shot 的泛化能力。它配備了可用 prompt 當作 input 的功能，所以它能對不同任務做調整。
 這樣的功能讓它作為一個很好的 foundation model
 
-![img.png](penguin.png)
+![img.png](image/penguin.png)
 
 
 ## 資料處理平台: [Roboflow](https://roboflow.com/) 
@@ -39,5 +39,5 @@ Roboflow 是一個專供給於影像辨識的資料處理平台。它有好用�
 
 而且它也造福群眾，撰寫了許多影像辨識模型的使用教學。shpPredictor 專案也參考了許多它的程式碼和文章
 
-![img.png](prepoccess.png)
+![img.png](image/prepoccess.png)
 

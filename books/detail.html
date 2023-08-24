@@ -129,7 +129,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="sidebar-primary-item">
   
 
-<a class="navbar-brand logo" href="../intro.html">
+<a class="navbar-brand logo" href="intro.html">
   
   
   
@@ -149,16 +149,18 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../intro.html">
-                    Welcome to your Jupyter Book
+                <a class="reference internal" href="intro.html">
+                    中研院暑期專案: ShpPredictor 介紹
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="intro.html">中研院暑期專案: ShpPredictor 介紹</a></li>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">intro and result on Nanshan-tomb Project</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="background.html">背景知識補充</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">how to use this module</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Training_object_detection_model_resultbook.html">Training object detection model resultbook</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="Predicting_mask_for_tifimage.html">Predicting_mask_for_tifimage_workbook</a></li>
 </ul>
 
@@ -353,15 +355,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-mask-for-tifimage-ipynb">(一) Predicting_mask_for_tifimage.ipynb</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inputs">inputs</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">模型權重</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-class">dataset class 數目 和 照片來源檔案</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">物件偵測精準度控制</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">照片經緯度資訊</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-object-detection-model-resultbook-ipynb">(一) Training_object_detection_model_resultbook.ipynb</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#roboflow">1. 登入 Roboflow 並填上資料集</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#score-thrshold-batch-size-max-epochs">2. 填入 SCORE_THRSHOLD、 BATCH_SIZE、 MAX_EPOCHS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint-average-model-pth-workbook">3. 訓練模型後務必將 checkpoint 資料夾的  average_model.pth 下載下來，此檔案將在下一份 workbook 中使用到</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">步驟</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-mask-for-tifimage-ipynb">(二) Predicting_mask_for_tifimage.ipynb</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1. 模型權重</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-class">2. dataset class 數目 和 照片來源檔案</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3. 物件偵測精準度控制</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4. 照片經緯度資訊</a></li>
 </ul>
 </li>
 </ul>
@@ -377,13 +381,37 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>程式碼重要資訊講解<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<p>以下將會提醒使用模型的注意事項，請詳閱以下說明</p>
+<section id="training-object-detection-model-resultbook-ipynb">
+<h2>(一) Training_object_detection_model_resultbook.ipynb<a class="headerlink" href="#training-object-detection-model-resultbook-ipynb" title="Permalink to this heading">#</a></h2>
+<p>Training_object_detection_model_resultbook 中有以下程式碼需要注意</p>
+<section id="roboflow">
+<h3>1. 登入 Roboflow 並填上資料集<a class="headerlink" href="#roboflow" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>請在 Project 中填入您所用的專案名稱，且在 Version 中填入您所要用得 roboflow 版本</p></li>
+</ul>
+</section>
+<section id="score-thrshold-batch-size-max-epochs">
+<h3>2. 填入 SCORE_THRSHOLD、 BATCH_SIZE、 MAX_EPOCHS<a class="headerlink" href="#score-thrshold-batch-size-max-epochs" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>SCORE_THRSHOLD 控制著模型的嚴格程度。該值越高 -&gt; bounding box 的數量越少 -&gt; 模型的 recall 值越低。
+最好調出最理想的 SCORE_THRSHOLD，以達到最高的 F1 值</p></li>
+<li><p>MAX_EPOCHS 會影響模型運行時間和精準度，務必填妥</p></li>
+<li><p>BATCH_SIZE 會影響 Colab 中的 RAM 的使用大小。如果不幸 RAM 的使用量超出 Colab 限制，可以嘗試降低 BATCH_SIZE 大小</p></li>
+</ul>
+</section>
+<section id="checkpoint-average-model-pth-workbook">
+<h3>3. 訓練模型後務必將 checkpoint 資料夾的  average_model.pth 下載下來，此檔案將在下一份 workbook 中使用到<a class="headerlink" href="#checkpoint-average-model-pth-workbook" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>除了將資料載到本機，也可以使用以上程式碼將資料轉移到 google 雲端硬碟 (記得先連接雲端硬碟在執行此程式碼)</p></li>
+</ul>
+</section>
+</section>
 <section id="predicting-mask-for-tifimage-ipynb">
-<h2>(一) Predicting_mask_for_tifimage.ipynb<a class="headerlink" href="#predicting-mask-for-tifimage-ipynb" title="Permalink to this heading">#</a></h2>
-<section id="inputs">
-<h3>inputs<a class="headerlink" href="#inputs" title="Permalink to this heading">#</a></h3>
-<p>在 Predicting_mask_for_tifimage 的 inputs 中有 10 個嵾數要填妥，分別如以下</p>
+<h2>(二) Predicting_mask_for_tifimage.ipynb<a class="headerlink" href="#predicting-mask-for-tifimage-ipynb" title="Permalink to this heading">#</a></h2>
+<p>Predicting_mask_for_tifimage 中的 inputs 有 10 個嵾數要填妥，分別如下</p>
 <section id="id2">
-<h4>模型權重<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
+<h3>1. 模型權重<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>“object_detection_model_checkpoint_path” : 在本欄位中，應填入從
 Training_object_detection_model 所得到的 “average_model.pth” 檔案。
@@ -393,14 +421,14 @@ Training_object_detection_model 所得到的 “average_model.pth” 檔案。
 </ul>
 </section>
 <section id="dataset-class">
-<h4>dataset class 數目 和 照片來源檔案<a class="headerlink" href="#dataset-class" title="Permalink to this heading">#</a></h4>
+<h3>2. dataset class 數目 和 照片來源檔案<a class="headerlink" href="#dataset-class" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>“num_classes” : 資料集中類別的數目</p></li>
 <li><p>“source_tiffile” : 欲分析的 tif 檔</p></li>
 </ul>
 </section>
 <section id="id3">
-<h4>物件偵測精準度控制<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h4>
+<h3>3. 物件偵測精準度控制<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>“confidence_threshold” : confidence score 代表模型的嚴格程度，分數值越高代表模型判斷物件的嚴格程度越高</p></li>
 <li><p>“tile_size” : tile size 代表 tif 檔分割的圖片大小。要知道的是，圖片大小適中才能確保模型判斷準確。如果圖片太大那物件本身會太小而看不清楚
@@ -408,7 +436,7 @@ Training_object_detection_model 所得到的 “average_model.pth” 檔案。
 </ul>
 </section>
 <section id="id4">
-<h4>照片經緯度資訊<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h4>
+<h3>4. 照片經緯度資訊<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
 <p>在將 mask 轉回 shp 檔時，我們會需要將 tif 檔 georefernce 成 geotiff。這時候我們就會需要 tif 檔的經緯度</p>
 <ul class="simple">
 <li><p>“top_left_lat” : tif 檔左上角的緯度</p></li>
@@ -416,10 +444,6 @@ Training_object_detection_model 所得到的 “average_model.pth” 檔案。
 <li><p>“below_right_lat” : tif 檔右下角的緯度</p></li>
 <li><p>below_right_lon” : tif 檔右下角的經度</p></li>
 </ul>
-</section>
-</section>
-<section id="id5">
-<h3>步驟<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
 </section>
 </section>
 </section>
@@ -473,15 +497,17 @@ Training_object_detection_model 所得到的 “average_model.pth” 檔案。
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-mask-for-tifimage-ipynb">(一) Predicting_mask_for_tifimage.ipynb</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inputs">inputs</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">模型權重</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-class">dataset class 數目 和 照片來源檔案</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">物件偵測精準度控制</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">照片經緯度資訊</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-object-detection-model-resultbook-ipynb">(一) Training_object_detection_model_resultbook.ipynb</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#roboflow">1. 登入 Roboflow 並填上資料集</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#score-thrshold-batch-size-max-epochs">2. 填入 SCORE_THRSHOLD、 BATCH_SIZE、 MAX_EPOCHS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint-average-model-pth-workbook">3. 訓練模型後務必將 checkpoint 資料夾的  average_model.pth 下載下來，此檔案將在下一份 workbook 中使用到</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">步驟</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-mask-for-tifimage-ipynb">(二) Predicting_mask_for_tifimage.ipynb</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1. 模型權重</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-class">2. dataset class 數目 和 照片來源檔案</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3. 物件偵測精準度控制</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">4. 照片經緯度資訊</a></li>
 </ul>
 </li>
 </ul>
