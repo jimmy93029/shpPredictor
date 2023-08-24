@@ -2,9 +2,13 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: intro
-chapters:
-- file: books/intro
-- file: books/background
-- file: books/Training_object_detection_model_resultbook
-- file: books/Predicting_mask_for_tifimage
+root: books/intro
+parts:
+  - caption: intro and result on Nanshan-tomb Project
+    chapters:
+    - file: books/background
+  - caption: how to use this module
+    chapters:
+    - file: bookks/detail
+    - file: books/Training_object_detection_model_resultbook
+    - file: books/Predicting_mask_for_tifimage
