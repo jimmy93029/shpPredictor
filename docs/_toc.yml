@@ -9,6 +9,6 @@ parts:
     - file: books/background
   - caption: how to use this module
     chapters:
-    - file: bookks/detail
+    - file: books/detail
     - file: books/Training_object_detection_model_resultbook
     - file: books/Predicting_mask_for_tifimage

@@ -22,7 +22,7 @@ neural architecture search 旨在透過機器學習的方法搜索出最佳化�
 不錯，但是難以達到最精準的配置。然而透過 NAS 的方法，我們可以讓機器自己調整出最精準的模型。而此類常見的作法有 暴搜、
 Reinforcement learning、gradiant-descent 等方法
 
-
+&emsp;
 ## 語意分割模型: [SAM](https://docs.ultralytics.com/models/sam/) (segment - anything - model)
 SAM　提出於 2023 年 4 月，是一個語意分割模型 (Semantic segmentation)。不只如此，它還是一個大型的基底模型 (foundation model) 
 ，因為訓練於擁有 10 億資料的 [SA-1B Dataset](https://ai.meta.com/datasets/segment-anything/)，使得它得精準度很高。
@@ -32,7 +32,7 @@ SAM　提出於 2023 年 4 月，是一個語意分割模型 (Semantic segmentat
 
 ![img.png](image/penguin.png)
 
-
+&emsp;
 ## 資料處理平台: [Roboflow](https://roboflow.com/) 
 Roboflow 是一個專供給於影像辨識的資料處理平台。它有好用的 annotation、prepoccessing、augmentation 功能，
 以及它擁有相當快的資料傳輸速度，所以將它作為資料存放的平台是十分便利的。

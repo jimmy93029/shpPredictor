@@ -22,9 +22,8 @@
 
 &emsp;
 ## shpPredictor 如何取用
-* 使用 shpPredictor 的方法有二
-1. 使用 Predicting_mask_for_tifimage(on_local)。將 inputs 所需資料被妥後，可以進到 main.py 來產生 shp 檔
-2. 使用 Training_object_detection_model_workbook.ipynb 和 Predicting_mask_for_tifimage.ipynb。可以將檔案上傳至 
-google colab，已啟用 Colab 環境執行程式
+* 使用 shpPredictor 的步驟
+1. 先進到 Training_object_detection_model_workbook.ipynb 產製物件偵測模型，並將模型儲存下來
+2. 再到 Predicting_mask_for_tifimage.ipynb 輸入欲預測之航拍圖 ，以產生物件遮罩 shp 檔
 
 請確認使用裝置有足夠 GPU。依據檔案大小，使用模型所需的 GPU 大小也不一 
