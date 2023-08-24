@@ -5,7 +5,7 @@
 Training_object_detection_model_resultbook 中有以下程式碼需要注意
 
 #### 1. 登入 Roboflow 並填上資料集
-```{code-cell} 
+```{code-block}
 %cd {HOME}
 
 import roboflow
@@ -25,7 +25,7 @@ dataset = project.version(Version).download("yolov5")
 * 請在 Project 中填入您所用的專案名稱，且在 Version 中填入您所要用得 roboflow 版本
 
 #### 2. 填入 SCORE_THRSHOLD、 BATCH_SIZE、 MAX_EPOCHS
-```{code-cell} 
+```{code-block}
 MODEL_ARCH = 'yolo_nas_l'
 MODEL_ARCH = 'yolo_nas_l'
 BATCH_SIZE = 10
@@ -43,7 +43,7 @@ EXPERIMENT_NAME = project.name.lower().replace(" ", "_")
 
 #### 3. 訓練模型後務必將 checkpoint 資料夾的  average_model.pth 下載下來，此檔案將在下一份 workbook 中使用到
 
-```{code-cell} 
+```{code-block}
 import locale
 locale.getpreferredencoding = lambda: "UTF-8"
 %cp "/content/checkpoints/nanshang_tomb/average_model.pth" "/content/drive/MyDrive/project_NanShang/resources/average_modelv10.pth"

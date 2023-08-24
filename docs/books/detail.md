@@ -53,7 +53,7 @@ locale.getpreferredencoding = lambda: "UTF-8"
 ### (二) Predicting_mask_for_tifimage.ipynb
 Predicting_mask_for_tifimage 中的 inputs 有 10 個嵾數要填妥，分別如下
 
-```{code-cell} 
+```{code-block} 
 inputs = {
       # 模型權重
       "object_detection_model_checkpoint_path": "/content/drive/MyDrive/project_NanShang/resources/average_modelbest.pth",

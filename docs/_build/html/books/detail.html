@@ -390,12 +390,37 @@ document.write(`
 <p>Training_object_detection_model_resultbook 中有以下程式碼需要注意</p>
 <section id="roboflow">
 <h3>1. 登入 Roboflow 並填上資料集<a class="headerlink" href="#roboflow" title="Permalink to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">cd</span> <span class="p">{</span><span class="n">HOME</span><span class="p">}</span>
+
+<span class="kn">import</span> <span class="nn">roboflow</span>
+<span class="kn">from</span> <span class="nn">roboflow</span> <span class="kn">import</span> <span class="n">Roboflow</span>
+
+<span class="n">roboflow</span><span class="o">.</span><span class="n">login</span><span class="p">()</span>
+
+<span class="n">rf</span> <span class="o">=</span> <span class="n">Roboflow</span><span class="p">()</span>
+
+<span class="n">Project_name</span> <span class="o">=</span> <span class="s2">&quot;nanshang_tomb&quot;</span>  <span class="c1"># 請登入 roboflow 並寫上您的資料集名稱 和 版本</span>
+<span class="n">Version</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">project</span> <span class="o">=</span> <span class="n">rf</span><span class="o">.</span><span class="n">workspace</span><span class="p">()</span><span class="o">.</span><span class="n">project</span><span class="p">(</span><span class="n">Project_name</span><span class="p">)</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">version</span><span class="p">(</span><span class="n">Version</span><span class="p">)</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s2">&quot;yolov5&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>請在 Project 中填入您所用的專案名稱，且在 Version 中填入您所要用得 roboflow 版本</p></li>
 </ul>
 </section>
 <section id="score-thrshold-batch-size-max-epochs">
 <h3>2. 填入 SCORE_THRSHOLD、 BATCH_SIZE、 MAX_EPOCHS<a class="headerlink" href="#score-thrshold-batch-size-max-epochs" title="Permalink to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MODEL_ARCH</span> <span class="o">=</span> <span class="s1">&#39;yolo_nas_l&#39;</span>
+<span class="n">MODEL_ARCH</span> <span class="o">=</span> <span class="s1">&#39;yolo_nas_l&#39;</span>
+<span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">MAX_EPOCHS</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">SCORE_THRSHOLD</span> <span class="o">=</span> <span class="mf">0.6</span>
+<span class="n">CHECKPOINT_DIR</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">HOME</span><span class="si">}</span><span class="s1">/checkpoints&#39;</span>
+<span class="n">EXPERIMENT_NAME</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>SCORE_THRSHOLD 控制著模型的嚴格程度。該值越高 -&gt; bounding box 的數量越少 -&gt; 模型的 recall 值越低。
 最好調出最理想的 SCORE_THRSHOLD，以達到最高的 F1 值</p></li>
@@ -405,6 +430,11 @@ document.write(`
 </section>
 <section id="checkpoint-average-model-pth-workbook">
 <h3>3. 訓練模型後務必將 checkpoint 資料夾的  average_model.pth 下載下來，此檔案將在下一份 workbook 中使用到<a class="headerlink" href="#checkpoint-average-model-pth-workbook" title="Permalink to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">locale</span>
+<span class="n">locale</span><span class="o">.</span><span class="n">getpreferredencoding</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="s2">&quot;UTF-8&quot;</span>
+<span class="o">%</span><span class="n">cp</span> <span class="s2">&quot;/content/checkpoints/nanshang_tomb/average_model.pth&quot;</span> <span class="s2">&quot;/content/drive/MyDrive/project_NanShang/resources/average_modelv10.pth&quot;</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li><p>除了將資料載到本機，也可以使用以上程式碼將資料轉移到 google 雲端硬碟 (記得先連接雲端硬碟在執行此程式碼)</p></li>
 </ul>
