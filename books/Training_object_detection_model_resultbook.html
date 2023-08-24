@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Training_object_detection_model_resultbook &#8212; My sample book</title>
+    <title>Training object detection model resultbook &#8212; My sample book</title>
   
   
   
@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Predicting_mask_for_tifimage_workbook" href="Predicting_mask_for_tifimage.html" />
-    <link rel="prev" title="Markdown Files" href="markdown.html" />
+    <link rel="prev" title="背景知識補充" href="background.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -157,9 +157,9 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Training_object_detection_model_resultbook</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="intro.html">中研院暑期專案: ShpPredictor 介紹</a></li>
+<li class="toctree-l1"><a class="reference internal" href="background.html">背景知識補充</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Training object detection model resultbook</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="Predicting_mask_for_tifimage.html">Predicting_mask_for_tifimage_workbook</a></li>
 </ul>
@@ -345,7 +345,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Training_object_detection_model_resultbook</h1>
+    <h1>Training object detection model resultbook</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -355,7 +355,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Training_object_detection_model_resultbook</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Training object detection model resultbook</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#before-you-start">⚡ Before you start</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#then-we-are-going-to-train-our-object-detection-model">Then, we are going to train our object detection model</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-yolo-nas">Install YOLO-NAS</a></li>
@@ -363,19 +363,22 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#restart-the-runtime">🚨 Restart the runtime</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#roboflow-provide-a-strong-platform-for-us-to-annotate-and-preprocess-our-data">Roboflow provide a strong platform for us to annotate and preprocess our data,</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tune-on-custom-dataset">Fine-tune on custom dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#settings">settings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instantiate-the-model">Instantiate the model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-metrics-and-training-parameters">Define metrics and training parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-model">Train the model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analyze-training-metrics">Analyze training metrics</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tune-on-custom-dataset">Fine-tune on custom dataset</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#settings">settings</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instantiate-the-model">Instantiate the model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-metrics-and-training-parameters">Define metrics and training parameters</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-model">Train the model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyze-training-metrics">Analyze training metrics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zip-and-download-fine-tuned-model">Zip and download fine-tuned model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zip-and-download-fine-tuned-model">Zip and download fine-tuned model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoints-nanshang-tomb-average-model-pth">記得將 checkpoints/nanshang_tomb 資料夾中的 average_model.pth 文件下載下來，此文件將在後續的物件偵測中被使用到。</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoints-nanshang-tomb-average-model-pth">記得將 checkpoints/nanshang_tomb 資料夾中的 average_model.pth 文件下載下來，此文件將在後續的物件偵測中被使用到。</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model">(想要檢查 model 辨識能力的人請繼續閱讀)</a><ul class="nav section-nav flex-column">
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"> </a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">視覺化呈現辨識能力</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluate-trained-model">Evaluate trained model</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inference-with-trained-model">Inference with trained model</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-inference-results">Visualize inference results</a></li>
@@ -395,11 +398,12 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <p><a href="https://colab.research.google.com/github/jimmy93029/Nanshan_tomb_image_segmentation/blob/main/docs/Training_object_detection_model_resultbook.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+  <p><a href="https://colab.research.google.com/github/jimmy93029/shpPredictor/blob/main/docs/books/Training_object_detection_model_resultbook.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
 <section id="training-object-detection-model-resultbook">
-<h1>Training_object_detection_model_resultbook<a class="headerlink" href="#training-object-detection-model-resultbook" title="Permalink to this heading">#</a></h1>
+<h1>Training object detection model resultbook<a class="headerlink" href="#training-object-detection-model-resultbook" title="Permalink to this heading">#</a></h1>
 <p>此 colab 程式碼負責訓練模型。訓練好的模型可以在 Project_Nanshang or Predicting_mask_for_tifimage.ipynb 來建構地圖遮罩的 shp 檔。
 另外，本程式碼是從 Roboflow <a class="reference external" href="https://github.com/roboflow/notebooks/blob/main/notebooks/train-yolo-nas-on-custom-dataset.ipynb">train-yolo-nas-on-custom-dataset.ipynb</a> 而來，更多細節可以參考 Roboflow 的教程</p>
+<p> </p>
 <section id="before-you-start">
 <h2>⚡ Before you start<a class="headerlink" href="#before-you-start" title="Permalink to this heading">#</a></h2>
 <p>Let’s make sure that we have access to GPU. We can use <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code> command to do that. In case of any problems navigate to <code class="docutils literal notranslate"><span class="pre">Edit</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Notebook</span> <span class="pre">settings</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Hardware</span> <span class="pre">accelerator</span></code>, set it to <code class="docutils literal notranslate"><span class="pre">GPU</span></code>, and then click <code class="docutils literal notranslate"><span class="pre">Save</span></code>.</p>
@@ -476,13 +480,14 @@ document.write(`
 </div>
 </div>
 </div>
+<p> </p>
 </section>
 <section id="roboflow-provide-a-strong-platform-for-us-to-annotate-and-preprocess-our-data">
 <h2>Roboflow provide a strong platform for us to annotate and preprocess our data,<a class="headerlink" href="#roboflow-provide-a-strong-platform-for-us-to-annotate-and-preprocess-our-data" title="Permalink to this heading">#</a></h2>
 <p>In this project, we will also use roboflow’s tool to store our data.
 make sure you are already have a project on roboflow</p>
 <p><a class="reference external" href="https://universe.roboflow.com/"><img alt="Roboflow Universe" src="https://media.roboflow.com/notebooks/template/uni-banner-frame.png?ik-sdk-version=javascript-1.4.3&amp;updatedAt=1672878480290" /></a></p>
-<p>Let’s login roboflow and spedify our project name</p>
+<p>Let’s login roboflow and specify our project name</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">cd</span> {HOME}
@@ -499,17 +504,6 @@ make sure you are already have a project on roboflow</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/content
-
-visit https://app.roboflow.com/auth-cli to get your authentication token.
-Paste the authentication token here: ··········
-loading Roboflow workspace...
-loading Roboflow project...
-Downloading Dataset Version Zip in NanShang_tomb-1 to yolov5pytorch: 100% [22291323 / 22291323] bytes
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -522,13 +516,12 @@ Downloading Dataset Version Zip in NanShang_tomb-1 to yolov5pytorch: 100% [22291
 </div>
 </div>
 </section>
-</section>
 <section id="fine-tune-on-custom-dataset">
-<h1>Fine-tune on custom dataset<a class="headerlink" href="#fine-tune-on-custom-dataset" title="Permalink to this heading">#</a></h1>
+<h2>Fine-tune on custom dataset<a class="headerlink" href="#fine-tune-on-custom-dataset" title="Permalink to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">ckpt_root_dir</span></code> - this is the directory where results from all your experiments will be saved</p>
 <p><code class="docutils literal notranslate"><span class="pre">experiment_name</span></code> - all checkpoints, logs, and tensorboards will be saved in a directory with the name you specify here.</p>
 <section id="settings">
-<h2>settings<a class="headerlink" href="#settings" title="Permalink to this heading">#</a></h2>
+<h3>settings<a class="headerlink" href="#settings" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MODEL_ARCH</span> <span class="o">=</span> <span class="s1">&#39;yolo_nas_l&#39;</span>
@@ -622,7 +615,7 @@ Caching annotations: 100%|██████████| 537/537 [00:00&lt;00:0
 </div>
 </section>
 <section id="instantiate-the-model">
-<h2>Instantiate the model<a class="headerlink" href="#instantiate-the-model" title="Permalink to this heading">#</a></h2>
+<h3>Instantiate the model<a class="headerlink" href="#instantiate-the-model" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">super_gradients.training</span> <span class="kn">import</span> <span class="n">models</span>
@@ -638,7 +631,7 @@ Caching annotations: 100%|██████████| 537/537 [00:00&lt;00:0
 </div>
 </section>
 <section id="define-metrics-and-training-parameters">
-<h2>Define metrics and training parameters<a class="headerlink" href="#define-metrics-and-training-parameters" title="Permalink to this heading">#</a></h2>
+<h3>Define metrics and training parameters<a class="headerlink" href="#define-metrics-and-training-parameters" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">super_gradients.training.losses</span> <span class="kn">import</span> <span class="n">PPYoloELoss</span>
@@ -688,7 +681,7 @@ Caching annotations: 100%|██████████| 537/537 [00:00&lt;00:0
 </div>
 </section>
 <section id="train-the-model">
-<h2>Train the model<a class="headerlink" href="#train-the-model" title="Permalink to this heading">#</a></h2>
+<h3>Train the model<a class="headerlink" href="#train-the-model" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
@@ -703,7 +696,7 @@ Caching annotations: 100%|██████████| 537/537 [00:00&lt;00:0
 </div>
 </section>
 <section id="analyze-training-metrics">
-<h2>Analyze training metrics<a class="headerlink" href="#analyze-training-metrics" title="Permalink to this heading">#</a></h2>
+<h3>Analyze training metrics<a class="headerlink" href="#analyze-training-metrics" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> tensorboard
@@ -712,6 +705,7 @@ Caching annotations: 100%|██████████| 537/537 [00:00&lt;00:0
 </div>
 </div>
 </div>
+</section>
 </section>
 <section id="zip-and-download-fine-tuned-model">
 <h2>Zip and download fine-tuned model<a class="headerlink" href="#zip-and-download-fine-tuned-model" title="Permalink to this heading">#</a></h2>
@@ -742,16 +736,17 @@ Caching annotations: 100%|██████████| 537/537 [00:00&lt;00:0
 </div>
 </div>
 </div>
-</section>
-</section>
 <section id="checkpoints-nanshang-tomb-average-model-pth">
-<h1>記得將 checkpoints/nanshang_tomb 資料夾中的 average_model.pth 文件下載下來，此文件將在後續的物件偵測中被使用到。<a class="headerlink" href="#checkpoints-nanshang-tomb-average-model-pth" title="Permalink to this heading">#</a></h1>
+<h3>記得將 checkpoints/nanshang_tomb 資料夾中的 average_model.pth 文件下載下來，此文件將在後續的物件偵測中被使用到。<a class="headerlink" href="#checkpoints-nanshang-tomb-average-model-pth" title="Permalink to this heading">#</a></h3>
 <p>其本上 fine-tune 模型就到這裡就完成了。接下來可以到 Predicting_mask_for_tifimage.ipynb 來產生 shp 檔</p>
-<section id="model">
-<h2>(想要檢查 model 辨識能力的人請繼續閱讀)<a class="headerlink" href="#model" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>以下會在 testing dataset 中實際呈現辨識完的照片</p></li>
-</ul>
+</section>
+</section>
+</section>
+<section id="id1">
+<h1> <a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<section id="id2">
+<h2>視覺化呈現辨識能力<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<p>想要檢查 model 辨識能力的人請繼續閱讀，以下會在 testing dataset 中呈現預測的遮罩檔</p>
 <section id="evaluate-trained-model">
 <h3>Evaluate trained model<a class="headerlink" href="#evaluate-trained-model" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -853,6 +848,7 @@ Caching annotations: 100%|██████████| 537/537 [00:00&lt;00:0
 </div>
 </div>
 </div>
+<p>恭喜您完成訓練，如果您對模型呈現結果滿意，可以到下一個 workbook 來製作 shp 檔</p>
 </section>
 </section>
 </section>
@@ -889,12 +885,12 @@ Caching annotations: 100%|██████████| 537/537 [00:00&lt;00:0
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="markdown.html"
+       href="background.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Markdown Files</p>
+        <p class="prev-next-title">背景知識補充</p>
       </div>
     </a>
     <a class="right-next"
@@ -924,7 +920,7 @@ Caching annotations: 100%|██████████| 537/537 [00:00&lt;00:0
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Training_object_detection_model_resultbook</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Training object detection model resultbook</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#before-you-start">⚡ Before you start</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#then-we-are-going-to-train-our-object-detection-model">Then, we are going to train our object detection model</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-yolo-nas">Install YOLO-NAS</a></li>
@@ -932,19 +928,22 @@ Caching annotations: 100%|██████████| 537/537 [00:00&lt;00:0
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#restart-the-runtime">🚨 Restart the runtime</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#roboflow-provide-a-strong-platform-for-us-to-annotate-and-preprocess-our-data">Roboflow provide a strong platform for us to annotate and preprocess our data,</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tune-on-custom-dataset">Fine-tune on custom dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#settings">settings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instantiate-the-model">Instantiate the model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-metrics-and-training-parameters">Define metrics and training parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-model">Train the model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analyze-training-metrics">Analyze training metrics</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fine-tune-on-custom-dataset">Fine-tune on custom dataset</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#settings">settings</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instantiate-the-model">Instantiate the model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-metrics-and-training-parameters">Define metrics and training parameters</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-the-model">Train the model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyze-training-metrics">Analyze training metrics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zip-and-download-fine-tuned-model">Zip and download fine-tuned model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zip-and-download-fine-tuned-model">Zip and download fine-tuned model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoints-nanshang-tomb-average-model-pth">記得將 checkpoints/nanshang_tomb 資料夾中的 average_model.pth 文件下載下來，此文件將在後續的物件偵測中被使用到。</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoints-nanshang-tomb-average-model-pth">記得將 checkpoints/nanshang_tomb 資料夾中的 average_model.pth 文件下載下來，此文件將在後續的物件偵測中被使用到。</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model">(想要檢查 model 辨識能力的人請繼續閱讀)</a><ul class="nav section-nav flex-column">
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"> </a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">視覺化呈現辨識能力</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluate-trained-model">Evaluate trained model</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inference-with-trained-model">Inference with trained model</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-inference-results">Visualize inference results</a></li>
