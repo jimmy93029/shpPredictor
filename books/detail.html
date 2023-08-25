@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Training object detection model resultbook" href="Training_object_detection_model_resultbook.html" />
-    <link rel="prev" title="背景知識補充" href="background.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="how_to_use_this_module.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -156,15 +156,11 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">intro and result on Nanshan-tomb Project</span></p>
-<ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="background.html">背景知識補充</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">how to use this module</span></p>
-<ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">程式碼重要資訊講解</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Training_object_detection_model_resultbook.html">Training object detection model resultbook</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Predicting_mask_for_tifimage.html">Predicting_mask_for_tifimage_workbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Predicting_mask_for_tifimage.html">Predicting_mask_for_tifimage</a></li>
 </ul>
 
     </div>
@@ -358,13 +354,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-object-detection-model-resultbook-ipynb">(一) Training_object_detection_model_resultbook.ipynb</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-object-detection-model">(一) Training_object_detection_model</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#roboflow">1. 登入 Roboflow 並填上資料集</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#score-thrshold-batch-size-max-epochs">2. 填入 SCORE_THRSHOLD、 BATCH_SIZE、 MAX_EPOCHS</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint-average-model-pth-workbook">3. 訓練模型後務必將 checkpoint 資料夾的  average_model.pth 下載下來，此檔案將在下一份 workbook 中使用到</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-mask-for-tifimage-ipynb">(二) Predicting_mask_for_tifimage.ipynb</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-mask-for-tifimage">(二) Predicting_mask_for_tifimage</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1. 模型權重</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-class">2. dataset class 數目 和 照片來源檔案</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3. 物件偵測精準度控制</a></li>
@@ -385,9 +381,9 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>程式碼重要資訊講解<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
 <p>以下將會提醒使用模型的注意事項，請詳閱以下說明</p>
-<section id="training-object-detection-model-resultbook-ipynb">
-<h2>(一) Training_object_detection_model_resultbook.ipynb<a class="headerlink" href="#training-object-detection-model-resultbook-ipynb" title="Permalink to this heading">#</a></h2>
-<p>Training_object_detection_model_resultbook 中有以下程式碼需要注意</p>
+<section id="training-object-detection-model">
+<h2>(一) Training_object_detection_model<a class="headerlink" href="#training-object-detection-model" title="Permalink to this heading">#</a></h2>
+<p>Training_object_detection_model_resultbook 中有以下資訊需要注意</p>
 <section id="roboflow">
 <h3>1. 登入 Roboflow 並填上資料集<a class="headerlink" href="#roboflow" title="Permalink to this heading">#</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">cd</span> <span class="p">{</span><span class="n">HOME</span><span class="p">}</span>
@@ -440,8 +436,8 @@ document.write(`
 </ul>
 </section>
 </section>
-<section id="predicting-mask-for-tifimage-ipynb">
-<h2>(二) Predicting_mask_for_tifimage.ipynb<a class="headerlink" href="#predicting-mask-for-tifimage-ipynb" title="Permalink to this heading">#</a></h2>
+<section id="predicting-mask-for-tifimage">
+<h2>(二) Predicting_mask_for_tifimage<a class="headerlink" href="#predicting-mask-for-tifimage" title="Permalink to this heading">#</a></h2>
 <p>Predicting_mask_for_tifimage 中的 inputs 有 10 個嵾數要填妥，分別如下</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="p">{</span>
       <span class="c1"># 模型權重</span>
@@ -539,12 +535,12 @@ Training_object_detection_model 所得到的 “average_model.pth” 檔案。
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="background.html"
+       href="how_to_use_this_module.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">背景知識補充</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
       </div>
     </a>
     <a class="right-next"
@@ -574,13 +570,13 @@ Training_object_detection_model 所得到的 “average_model.pth” 檔案。
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-object-detection-model-resultbook-ipynb">(一) Training_object_detection_model_resultbook.ipynb</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-object-detection-model">(一) Training_object_detection_model</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#roboflow">1. 登入 Roboflow 並填上資料集</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#score-thrshold-batch-size-max-epochs">2. 填入 SCORE_THRSHOLD、 BATCH_SIZE、 MAX_EPOCHS</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint-average-model-pth-workbook">3. 訓練模型後務必將 checkpoint 資料夾的  average_model.pth 下載下來，此檔案將在下一份 workbook 中使用到</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-mask-for-tifimage-ipynb">(二) Predicting_mask_for_tifimage.ipynb</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-mask-for-tifimage">(二) Predicting_mask_for_tifimage</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1. 模型權重</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-class">2. dataset class 數目 和 照片來源檔案</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3. 物件偵測精準度控制</a></li>
