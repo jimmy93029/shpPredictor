@@ -4,11 +4,11 @@
 format: jb-book
 root: books/intro
 chapters:
-  - caption: Nanshan-tomb Project
-    sections:
-    - file: books/background
-  - caption: how to use this module
-    sections:
-    - file: books/detail
-    - file: books/Training_object_detection_model_resultbook
-    - file: books/Predicting_mask_for_tifimage
+- file: books/Nanshan-tomb_Project
+  sections:
+  - file: books/background
+- file: books/how_to_use_this_module
+  sections:
+  - file: books/detail
+  - file: books/Training_object_detection_model_resultbook
+  - file: books/Predicting_mask_for_tifimage

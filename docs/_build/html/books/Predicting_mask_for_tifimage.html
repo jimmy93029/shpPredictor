@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Predicting_mask_for_tifimage_workbook &#8212; My sample book</title>
+    <title>Predicting_mask_for_tifimage &#8212; My sample book</title>
   
   
   
@@ -155,15 +155,11 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">intro and result on Nanshan-tomb Project</span></p>
-<ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="background.html">背景知識補充</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">how to use this module</span></p>
-<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="detail.html">程式碼重要資訊講解</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Training_object_detection_model_resultbook.html">Training object detection model resultbook</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Predicting_mask_for_tifimage_workbook</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Predicting_mask_for_tifimage</a></li>
 </ul>
 
     </div>
@@ -347,7 +343,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Predicting_mask_for_tifimage_workbook</h1>
+    <h1>Predicting_mask_for_tifimage</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -378,9 +374,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <p><a href="https://colab.research.google.com/github/jimmy93029/shpPredictor/blob/main/shpPredictor/Predicting_mask_for_tifimage.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
-<section class="tex2jax_ignore mathjax_ignore" id="predicting-mask-for-tifimage-workbook">
-<h1>Predicting_mask_for_tifimage_workbook<a class="headerlink" href="#predicting-mask-for-tifimage-workbook" title="Permalink to this heading">#</a></h1>
+  <p><a href="https://colab.research.google.com/github/jimmy93029/shpPredictor/blob/main/docs/books/Predicting_mask_for_tifimage.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="predicting-mask-for-tifimage">
+<h1>Predicting_mask_for_tifimage<a class="headerlink" href="#predicting-mask-for-tifimage" title="Permalink to this heading">#</a></h1>
 <p>我們將利用 Training_object_detection_model_workbook 所儲存的 model ，將 tif 檔轉換成特定物件的 shp 遮罩檔。過程中我們會有 5 個步驟，
 (1) 切分 tif  (2) 預測 bounding box  (3) 利用 SAM 製作 mask.jpg (4) 合併 jpg 檔
 (5) 將 jpg 檔換成 shp 檔</p>
@@ -423,7 +419,9 @@ so please update super-gradients to the latest version to avoid some error about
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>%cd {HOME}
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>import os
+HOME = os.getcwd()
+%cd {HOME}
 
 import sys
 !{sys.executable} -m pip install &#39;git+https://github.com/facebookresearch/segment-anything.git
@@ -431,14 +429,14 @@ import sys
 </div>
 </div>
 </div>
-<p>如果要下載 segment-anything-model 的模型權重可以解鎖以下的程式碼</p>
+<p>如果要下載 segment-anything-model 的模型權重可以使用以下的程式碼</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># %cd {HOME}</span>
-<span class="c1"># !mkdir {HOME}/weights</span>
-<span class="c1"># %cd {HOME}/weights</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>%cd {HOME}
+!mkdir {HOME}/weights
+%cd {HOME}/weights
 
-<span class="c1"># !wget -q https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth</span>
+!wget -q https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth
 </pre></div>
 </div>
 </div>
@@ -448,28 +446,31 @@ import sys
 <h2>inputs and setting<a class="headerlink" href="#inputs-and-setting" title="Permalink to this heading">#</a></h2>
 <p>詳細可查看 shpPredictor jupyter book 的 程式碼重要資訊講解，
 裏頭會細講參數的注意事項</p>
+<ul class="simple">
+<li><p>inputs</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
 
 <span class="n">inputs</span> <span class="o">=</span> <span class="p">{</span>
       <span class="c1"># 模型權重</span>
-      <span class="s2">&quot;object_detection_model_checkpoint_path&quot;</span><span class="p">:</span> <span class="s2">&quot;/content/drive/MyDrive/project_NanShang/resources/average_modelbest.pth&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;sam_checkpoint_path&quot;</span><span class="p">:</span> <span class="s2">&quot;/content/drive/MyDrive/project_NanShang/resources/sam_vit_h_4b8939.pth&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;object_detection_model_checkpoint_path&quot;</span><span class="p">:</span> <span class="s2">&quot;/content/drive/MyDrive/project_NanShang/resources/average_modelv10_80epochs.pth&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;sam_checkpoint_path&quot;</span><span class="p">:</span> <span class="s2">&quot;/content/weights/sam_vit_h_4b8939.pth&quot;</span><span class="p">,</span>
 
       <span class="c1">#　dataset class 數目 和 照片來源檔案</span>
       <span class="s2">&quot;num_classes&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-      <span class="s2">&quot;source_tiffile&quot;</span><span class="p">:</span> <span class="s2">&quot;/content/drive/MyDrive/project_NanShang/resources/NanShang_Tomb_cp.tif&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;source_tiffile&quot;</span><span class="p">:</span> <span class="s2">&quot;/content/drive/MyDrive/project_NanShang/resources/Nanshan2.tif&quot;</span><span class="p">,</span>
 
       <span class="c1"># 物件偵測精準度控制</span>
       <span class="s2">&quot;confidence_threshold&quot;</span><span class="p">:</span> <span class="mf">0.65</span><span class="p">,</span>
       <span class="s2">&quot;tile_size&quot;</span><span class="p">:</span> <span class="mi">700</span><span class="p">,</span>
 
       <span class="c1"># 照片經緯度資訊</span>
-      <span class="s2">&quot;top_left_lat&quot;</span><span class="p">:</span> <span class="mf">22.97494</span><span class="p">,</span>           <span class="c1"># tif 檔左上角的緯度</span>
-      <span class="s2">&quot;top_left_lon&quot;</span><span class="p">:</span> <span class="mf">120.19544</span><span class="p">,</span>          <span class="c1"># tif 檔左上角的經度</span>
-      <span class="s2">&quot;below_right_lat&quot;</span><span class="p">:</span> <span class="mf">22.96717</span><span class="p">,</span>         <span class="c1"># tif 檔右下角的緯度</span>
-      <span class="s2">&quot;below_right_lon&quot;</span><span class="p">:</span> <span class="mf">120.19775</span><span class="p">,</span>        <span class="c1"># tif 檔右下角的經度</span>
+      <span class="s2">&quot;top_left_lat&quot;</span><span class="p">:</span> <span class="mf">22.9749</span><span class="p">,</span>           <span class="c1"># tif 檔左上角的緯度</span>
+      <span class="s2">&quot;top_left_lon&quot;</span><span class="p">:</span> <span class="mf">120.1977</span><span class="p">,</span>          <span class="c1"># tif 檔左上角的經度</span>
+      <span class="s2">&quot;below_right_lat&quot;</span><span class="p">:</span> <span class="mf">22.9673</span><span class="p">,</span>         <span class="c1"># tif 檔右下角的緯度</span>
+      <span class="s2">&quot;below_right_lon&quot;</span><span class="p">:</span> <span class="mf">120.2033</span><span class="p">,</span>        <span class="c1"># tif 檔右下角的經度</span>
 
       <span class="s2">&quot;device&quot;</span><span class="p">:</span> <span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">,</span>
       <span class="s2">&quot;model_arch&quot;</span><span class="p">:</span> <span class="s1">&#39;yolo_nas_l&#39;</span><span class="p">,</span>
@@ -480,6 +481,9 @@ import sys
 </div>
 </div>
 </div>
+<ul class="simple">
+<li><p>settings</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -493,7 +497,7 @@ import sys
 <span class="n">COMPLETE_MASK_TIFF</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">STOREHOUSE</span><span class="p">,</span> <span class="n">complete_mask_filename</span> <span class="o">+</span> <span class="s2">&quot;.tiff&quot;</span><span class="p">)</span>
 <span class="n">COMPLETE_MASK_GEOTIFF</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">STOREHOUSE</span><span class="p">,</span> <span class="s2">&quot;geo&quot;</span> <span class="o">+</span> <span class="n">complete_mask_filename</span> <span class="o">+</span> <span class="s2">&quot;.tiff&quot;</span><span class="p">)</span>
 
-<span class="n">OUTPUT_DIR</span> <span class="o">=</span> <span class="s2">&quot;output&quot;</span>
+<span class="n">OUTPUT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">STOREHOUSE</span><span class="p">,</span> <span class="s2">&quot;output.shp&quot;</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
 </pre></div>
 </div>
@@ -504,17 +508,10 @@ import sys
 <h2>initialize directory<a class="headerlink" href="#initialize-directory" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">HOME</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
-<span class="o">%</span><span class="n">cd</span> <span class="p">{</span><span class="n">HOME</span><span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 
-<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">OUTPUT_DIR</span><span class="p">)</span>
+<span class="o">%</span><span class="n">cd</span> <span class="p">{</span><span class="n">HOME</span><span class="p">}</span>
+
 <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">STOREHOUSE</span><span class="p">)</span>
 <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">SPLITED_TIFS_DIR</span><span class="p">)</span>
 <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">MASK_DIR</span><span class="p">)</span>
@@ -689,11 +686,15 @@ import sys
 </section>
 <section id="step-5-1-image-to-geotiff">
 <h2>Step 5 - 1: image to geotiff<a class="headerlink" href="#step-5-1-image-to-geotiff" title="Permalink to this heading">#</a></h2>
+<p>執行這一步時很吃 RAM。如果 Colab 工作階段因異常原因而中止，那滿有可能是 RAM 不足的問題</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">aspose.words</span> <span class="k">as</span> <span class="nn">aw</span>
 <span class="kn">import</span> <span class="nn">rasterio</span>
 <span class="kn">from</span> <span class="nn">rasterio.transform</span> <span class="kn">import</span> <span class="n">from_origin</span>
+
+
+<span class="n">COMPLETE_MASK_JPG</span> <span class="o">=</span> <span class="s2">&quot;/content/drive/MyDrive/project_NanShang/resources/map_mask_tomb2.jpg&quot;</span>
 
 <span class="k">def</span> <span class="nf">jpg2tiff</span><span class="p">():</span>
     <span class="n">doc</span> <span class="o">=</span> <span class="n">aw</span><span class="o">.</span><span class="n">Document</span><span class="p">()</span>
@@ -703,7 +704,7 @@ import sys
 
 <span class="k">def</span> <span class="nf">tiff2goetiff</span><span class="p">(</span><span class="n">below_right_lat</span><span class="p">,</span> <span class="n">top_left_lat</span><span class="p">,</span> <span class="n">below_right_lon</span><span class="p">,</span> <span class="n">top_left_lon</span><span class="p">):</span>
     <span class="c1"># Read the input TIFF</span>
-    <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">COMPLETE_MASK_GEOTIFF</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">COMPLETE_MASK_TIFF</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
         <span class="n">dtype</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">dtypes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">count</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">count</span>
@@ -754,7 +755,7 @@ import sys
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">samgeo.common</span> <span class="kn">import</span> <span class="n">raster_to_shp</span>
 
-<span class="n">raster_to_shp</span><span class="p">(</span><span class="n">COMPLETE_MASK_GEOTIFF</span><span class="p">,</span> <span class="n">OUTPUT_DIR</span><span class="p">)</span>
+<span class="n">raster_to_shp</span><span class="p">(</span><span class="n">COMPLETE_MASK_GEOTIFF</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
