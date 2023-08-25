@@ -4,7 +4,7 @@
 format: jb-book
 root: books/intro
 parts:
-  - caption: intro and result on Nanshan-tomb Project
+  - caption: Nanshan-tomb Project
     chapters:
     - file: books/background
   - caption: how to use this module

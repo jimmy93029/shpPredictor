@@ -7,7 +7,6 @@ import shutil
 class InitializeDir(Step):
     def process(self, data: dict, inputs: dict):
         self.reinitialize_storehouse()
-        self.checkOUTPUT_DIR()
         return data
 
     def reinitialize_storehouse(self):
@@ -16,10 +15,6 @@ class InitializeDir(Step):
         os.mkdir(STOREHOUSE)
         os.mkdir(SPLITED_TIFS_DIR)
         os.mkdir(MASK_DIR)
-
-    def checkOUTPUT_DIR(self):
-        if not os.path.exists(OUTPUT_DIR):
-            os.makedirs(OUTPUT_DIR)
 
     def __str__(self):
         return "InitializeDir"

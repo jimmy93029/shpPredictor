@@ -10,4 +10,4 @@ COMPLETE_MASK_JPG = os.path.join(STOREHOUSE, complete_mask_filename + ".jpg")
 COMPLETE_MASK_TIFF = os.path.join(STOREHOUSE, complete_mask_filename + ".tiff")
 COMPLETE_MASK_GEOTIFF = os.path.join(STOREHOUSE, "geo" + complete_mask_filename + ".tiff")
 
-OUTPUT_DIR = "output"
+OUTPUT = os.path.join(STOREHOUSE, "output")

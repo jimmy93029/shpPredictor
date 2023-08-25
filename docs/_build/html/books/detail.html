@@ -443,6 +443,32 @@ document.write(`
 <section id="predicting-mask-for-tifimage-ipynb">
 <h2>(二) Predicting_mask_for_tifimage.ipynb<a class="headerlink" href="#predicting-mask-for-tifimage-ipynb" title="Permalink to this heading">#</a></h2>
 <p>Predicting_mask_for_tifimage 中的 inputs 有 10 個嵾數要填妥，分別如下</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="c1"># 模型權重</span>
+      <span class="s2">&quot;object_detection_model_checkpoint_path&quot;</span><span class="p">:</span> <span class="s2">&quot;/content/drive/MyDrive/project_NanShang/resources/average_modelbest.pth&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;sam_checkpoint_path&quot;</span><span class="p">:</span> <span class="s2">&quot;/content/drive/MyDrive/project_NanShang/resources/sam_vit_h_4b8939.pth&quot;</span><span class="p">,</span>
+
+      <span class="c1">#　dataset class 數目 和 照片來源檔案</span>
+      <span class="s2">&quot;num_classes&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="s2">&quot;source_tiffile&quot;</span><span class="p">:</span> <span class="s2">&quot;/content/drive/MyDrive/project_NanShang/resources/NanShang_Tomb_cp.tif&quot;</span><span class="p">,</span>
+
+      <span class="c1"># 物件偵測精準度控制</span>
+      <span class="s2">&quot;confidence_threshold&quot;</span><span class="p">:</span> <span class="mf">0.65</span><span class="p">,</span>
+      <span class="s2">&quot;tile_size&quot;</span><span class="p">:</span> <span class="mi">700</span><span class="p">,</span>
+
+      <span class="c1"># 照片經緯度資訊</span>
+      <span class="s2">&quot;top_left_lat&quot;</span><span class="p">:</span> <span class="mf">22.97494</span><span class="p">,</span>           <span class="c1"># tif 檔左上角的緯度</span>
+      <span class="s2">&quot;top_left_lon&quot;</span><span class="p">:</span> <span class="mf">120.19544</span><span class="p">,</span>          <span class="c1"># tif 檔左上角的經度</span>
+      <span class="s2">&quot;below_right_lat&quot;</span><span class="p">:</span> <span class="mf">22.96717</span><span class="p">,</span>         <span class="c1"># tif 檔右下角的緯度</span>
+      <span class="s2">&quot;below_right_lon&quot;</span><span class="p">:</span> <span class="mf">120.19775</span><span class="p">,</span>        <span class="c1"># tif 檔右下角的經度</span>
+
+      <span class="s2">&quot;device&quot;</span><span class="p">:</span> <span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;model_arch&quot;</span><span class="p">:</span> <span class="s1">&#39;yolo_nas_l&#39;</span><span class="p">,</span>
+      <span class="s2">&quot;sam_encoder_version&quot;</span><span class="p">:</span> <span class="s2">&quot;vit_h&quot;</span><span class="p">,</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
 <section id="id2">
 <h3>1. 模型權重<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <ul class="simple">

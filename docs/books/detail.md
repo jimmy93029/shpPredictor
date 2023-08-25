@@ -1,8 +1,8 @@
-# 程式碼重要資訊講解
+## 程式碼重要資訊講解
 
 以下將會提醒使用模型的注意事項，請詳閱以下說明
-### (一) Training_object_detection_model_resultbook.ipynb
-Training_object_detection_model_resultbook 中有以下程式碼需要注意
+### (一) Training_object_detection_model
+Training_object_detection_model_resultbook 中有以下資訊需要注意
 
 #### 1. 登入 Roboflow 並填上資料集
 ```{code-block}
@@ -50,7 +50,7 @@ locale.getpreferredencoding = lambda: "UTF-8"
 ```
 * 除了將資料載到本機，也可以使用以上程式碼將資料轉移到 google 雲端硬碟 (記得先連接雲端硬碟在執行此程式碼)
 
-### (二) Predicting_mask_for_tifimage.ipynb
+### (二) Predicting_mask_for_tifimage
 Predicting_mask_for_tifimage 中的 inputs 有 10 個嵾數要填妥，分別如下
 
 ```{code-block} 

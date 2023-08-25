@@ -1,5 +1,5 @@
 from .step import Step
-from shpPredictor.Project_Nanshang.pipeline.settings import COMPLETE_MASK_JPG,  COMPLETE_MASK_TIFF,  COMPLETE_MASK_GEOTIFF
+from ..settings import COMPLETE_MASK_JPG,  COMPLETE_MASK_TIFF,  COMPLETE_MASK_GEOTIFF
 import aspose.words as aw
 from rasterio.transform import from_origin
 import rasterio
@@ -20,7 +20,7 @@ class Image2Geotiff(Step):
 
     def tiff2goetiff(self, below_right_lat, top_left_lat, below_right_lon, top_left_lon):
         # Read the input TIFF
-        with rasterio.open(COMPLETE_MASK_GEOTIFF) as src:
+        with rasterio.open(COMPLETE_MASK_TIFF) as src:
             data = src.read()
             dtype = src.dtypes[0]
             count = src.count
