@@ -18,7 +18,7 @@
 試圖引入 Deep Learning 的技術解決這問題
 
 我將使用 Meta 提出的物件分割模型 SAM 去產生地圖遮罩，並用物件偵測模型 (Yolo -nas) 去辨識出墳墓位置。在產生墳墓位置的 jpg 檔後，
-檔案將經由一系列檔案轉換、georeference 來變成 shp 檔。更多資訊請閱讀此專題的 documentation : [shpPredictor-jupyter-notebook](https://jimmy93029.github.io/shpPredictor/intro.html)
+檔案將經由一系列檔案轉換、georeference 來變成 shp 檔。更多資訊請閱讀此專題的 documentation : [shpPredictor-jupyter-notebook](https://jimmy93029.github.io/shpPredictor/books/intro.html)
 
 &emsp;
 ## shpPredictor 如何取用
