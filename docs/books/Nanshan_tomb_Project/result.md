@@ -36,6 +36,6 @@ performance
 * 在製作 Model 時，我評估對我影響最大的是 false positive, 也就是"錯判成墓物件的其他物品"。所以為了避免這些東西的存在
 我將 score_threshold 設為 0.6，目的就是為了讓 bounding box 判定的更嚴格。
 
-* 當然 bounding box 圈的越嚴格，recall 值就有可能越低。所以在 performance 中可以看到 recall 值大約 0.7 ，而
+* 當然 bounding box 圈的越嚴格，recall 值就有可能越低。所以在 performance 中可以看到 recall 值大約 0.6 ，而
 precision 大約 0.9。這是意料之內的結果
 

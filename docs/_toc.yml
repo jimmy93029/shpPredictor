@@ -4,12 +4,12 @@
 format: jb-book
 root: books/intro
 chapters:
-- file: books/Nanshan-tomb_Project
+- file: books/Nanshan_tomb_Project
   sections:
-  - file: books/background
-  - file: books/result
+  - file: books/Nanshan_tomb_Project/background
+  - file: books/Nanshan_tomb_Project/result
 - file: books/how_to_use_this_module
   sections:
-  - file: books/detail
-  - file: books/Training_object_detection_model_resultbook
-  - file: books/Predicting_mask_for_tifimage
+  - file: books/how_to_use_this_module/detail
+  - file: books/how_to_use_this_module/Training_object_detection_model_resultbook
+  - file: books/how_to_use_this_module/Predicting_mask_for_tifimage
