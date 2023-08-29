@@ -4,7 +4,7 @@
 
 
 ### 原圖
-```{figure} image/Nanshan2_original.png
+```{figure} ../image/Nanshan2_original.png
 ---
 scale: 50%
 align: left
@@ -12,7 +12,7 @@ align: left
 original
 ```
 ### 遮罩後的圖檔
-```{figure} image/Nanshan2_on_mask.png
+```{figure} ../image/Nanshan2_on_mask.png
 ---
 scale: 50%
 align: left
@@ -24,7 +24,7 @@ masked
 代表模型產出的結果其實很理想。這些圖片再轉成 shapefile 後將有很不錯的呈現結果
 
 ## model performance 分析
-```{figure} image/performance.png
+```{figure} ../image/performance.png
 ---
 scale: 70%
 align: left
