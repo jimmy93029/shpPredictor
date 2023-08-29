@@ -64,6 +64,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'books/result';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="how_to_use_this_module.html" />
+    <link rel="prev" title="背景知識補充" href="background.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -154,15 +156,12 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">intro and result on Nanshan-tomb Project</span></p>
-<ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="background.html">背景知識補充</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">how to use this module</span></p>
-<ul class="nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">成果展示與分析</a></li>
 <li class="toctree-l1"><a class="reference internal" href="detail.html">程式碼重要資訊講解</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Training_object_detection_model_resultbook.html">Training object detection model resultbook</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Predicting_mask_for_tifimage.html">Predicting_mask_for_tifimage_workbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Predicting_mask_for_tifimage.html">Predicting_mask_for_tifimage</a></li>
 </ul>
 
     </div>
@@ -356,7 +355,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mask">mask 預測結果比較</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">原圖</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">遮罩後的圖檔</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-performance">model performance 分析</a></li>
 </ul>
             </nav>
         </div>
@@ -370,8 +374,45 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>成果展示與分析<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<section id="mask">
+<h2>mask 預測結果比較<a class="headerlink" href="#mask" title="Permalink to this heading">#</a></h2>
 <section id="id2">
-<h2><a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<h3>原圖<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<figure class="align-left" id="id4">
+<a class="reference internal image-reference" href="../_images/Nanshan2_original.png"><img alt="../_images/Nanshan2_original.png" src="../_images/Nanshan2_original.png" style="width: 730.0px; height: 391.5px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">original</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="id3">
+<h3>遮罩後的圖檔<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<figure class="align-left" id="id5">
+<a class="reference internal image-reference" href="../_images/Nanshan2_on_mask.png"><img alt="../_images/Nanshan2_on_mask.png" src="../_images/Nanshan2_on_mask.png" style="width: 853.0px; height: 401.0px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">masked</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>可以發現此模型幾乎將大部分墓物件都找出來了 (暗示著 模型的 recall 值很很不錯)，而且無關的建築物並未被納入 mask 中 (precision 很高)。
+代表模型產出的結果其實很理想。這些圖片再轉成 shapefile 後將有很不錯的呈現結果</p></li>
+</ul>
+</section>
+</section>
+<section id="model-performance">
+<h2>model performance 分析<a class="headerlink" href="#model-performance" title="Permalink to this heading">#</a></h2>
+<figure class="align-left" id="id6">
+<a class="reference internal image-reference" href="../_images/performance.png"><img alt="../_images/performance.png" src="../_images/performance.png" style="width: 717.5px; height: 149.79999999999998px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">performance</span><a class="headerlink" href="#id6" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<ul class="simple">
+<li><p>在製作 Model 時，我評估對我影響最大的是 false positive, 也就是”錯判成墓物件的其他物品”。所以為了避免這些東西的存在
+我將 score_threshold 設為 0.6，目的就是為了讓 bounding box 判定的更嚴格。</p></li>
+<li><p>當然 bounding box 圈的越嚴格，recall 值就有可能越低。所以在 performance 中可以看到 recall 值大約 0.7 ，而
+precision 大約 0.9。這是意料之內的結果</p></li>
+</ul>
 </section>
 </section>
 
@@ -406,6 +447,24 @@ document.write(`
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="background.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">背景知識補充</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="how_to_use_this_module.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
@@ -424,7 +483,12 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mask">mask 預測結果比較</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">原圖</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">遮罩後的圖檔</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-performance">model performance 分析</a></li>
 </ul>
   </nav></div>
 
