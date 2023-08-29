@@ -7,6 +7,7 @@ chapters:
 - file: books/Nanshan-tomb_Project
   sections:
   - file: books/background
+  - file: books/result
 - file: books/how_to_use_this_module
   sections:
   - file: books/detail
