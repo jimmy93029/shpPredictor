@@ -1,0 +1,888 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Predicting_mask_for_tifimage &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'books/how_to_use_this_module/Predicting_mask_for_tifimage';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Training object detection model resultbook" href="Training_object_detection_model_resultbook.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/shpPredictor.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/shpPredictor.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    中研院暑期專案: ShpPredictor 介紹
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Nanshan_tomb_Project/background.html">背景知識補充</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Nanshan_tomb_Project/result.html">成果展示與分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="detail.html">程式碼重要資訊講解</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Training_object_detection_model_resultbook.html">Training object detection model resultbook</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Predicting_mask_for_tifimage</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jimmy93029/shpPredictor.git" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jimmy93029/shpPredictor.git/issues/new?title=Issue%20on%20page%20%2Fbooks/how_to_use_this_module/Predicting_mask_for_tifimage.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/books/how_to_use_this_module/Predicting_mask_for_tifimage.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Predicting_mask_for_tifimage</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#before-you-start">⚡ Before you start</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-package">install package</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inputs-and-setting">inputs and setting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-directory">initialize directory</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-cropping-tif">Step 1 : Cropping tif</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step2-predict-bounding-box">Step2 : predict bounding box</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-predict-mask">Step 3 : predict_mask</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-merge-image">Step 4 : merge image</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-1-image-to-geotiff">Step 5 - 1: image to geotiff</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-2-geotiff-to-shp">Step 5 - 2: geotiff to shp</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <p><a href="https://colab.research.google.com/github/jimmy93029/shpPredictor/blob/main/docs/books/Predicting_mask_for_tifimage.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="predicting-mask-for-tifimage">
+<h1>Predicting_mask_for_tifimage<a class="headerlink" href="#predicting-mask-for-tifimage" title="Permalink to this heading">#</a></h1>
+<p>我們將利用 Training_object_detection_model_workbook 所儲存的 model ，將 tif 檔轉換成特定物件的 shp 遮罩檔。過程中我們會有 5 個步驟，
+(1) 切分 tif  (2) 預測 bounding box  (3) 利用 SAM 製作 mask.jpg (4) 合併 jpg 檔
+(5) 將 jpg 檔換成 shp 檔</p>
+<p>請將 “sam_checkpoint_path”、”average_model.pth”、”source_tiffile” 文件備齊，並將 inputs 各項欄位填妥。<strong>以上各項資料均會影響 shp檔生成結果，請好好填妥</strong></p>
+<section id="before-you-start">
+<h2>⚡ Before you start<a class="headerlink" href="#before-you-start" title="Permalink to this heading">#</a></h2>
+<p>Let’s make sure that we have access to GPU. We can use nvidia-smi command to do that. In case of any problems navigate to Edit -&gt; Notebook settings -&gt; Hardware accelerator, set it to GPU, and then click Save.</p>
+</section>
+<section id="install-package">
+<h2>install package<a class="headerlink" href="#install-package" title="Permalink to this heading">#</a></h2>
+<p>( be aware that super-gradients sometimes change their package ralease version,
+so please update super-gradients to the latest version to avoid some error about super-gradients)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="n">segment</span><span class="o">-</span><span class="n">geospatial</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!pip install super-gradients==3.2.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!pip install -q supervision
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!pip install aspose-words
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>import os
+HOME = os.getcwd()
+%cd {HOME}
+
+import sys
+!{sys.executable} -m pip install &#39;git+https://github.com/facebookresearch/segment-anything.git
+</pre></div>
+</div>
+</div>
+</div>
+<p>如果要下載 segment-anything-model 的模型權重可以使用以下的程式碼</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>%cd {HOME}
+!mkdir {HOME}/weights
+%cd {HOME}/weights
+
+!wget -q https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="inputs-and-setting">
+<h2>inputs and setting<a class="headerlink" href="#inputs-and-setting" title="Permalink to this heading">#</a></h2>
+<p>詳細可查看 shpPredictor jupyter book 的 程式碼重要資訊講解，
+裏頭會細講參數的注意事項</p>
+<ul class="simple">
+<li><p>inputs</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="n">inputs</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="c1"># 模型權重</span>
+      <span class="s2">&quot;object_detection_model_checkpoint_path&quot;</span><span class="p">:</span> <span class="s2">&quot;/content/drive/MyDrive/project_NanShang/resources/average_modelv10_80epochs.pth&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;sam_checkpoint_path&quot;</span><span class="p">:</span> <span class="s2">&quot;/content/weights/sam_vit_h_4b8939.pth&quot;</span><span class="p">,</span>
+
+      <span class="c1">#　dataset class 數目 和 照片來源檔案</span>
+      <span class="s2">&quot;num_classes&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="s2">&quot;source_tiffile&quot;</span><span class="p">:</span> <span class="s2">&quot;/content/drive/MyDrive/project_NanShang/resources/Nanshan2.tif&quot;</span><span class="p">,</span>
+
+      <span class="c1"># 物件偵測精準度控制</span>
+      <span class="s2">&quot;confidence_threshold&quot;</span><span class="p">:</span> <span class="mf">0.65</span><span class="p">,</span>
+      <span class="s2">&quot;tile_size&quot;</span><span class="p">:</span> <span class="mi">700</span><span class="p">,</span>
+
+      <span class="c1"># 照片經緯度資訊</span>
+      <span class="s2">&quot;top_left_lat&quot;</span><span class="p">:</span> <span class="mf">22.9749</span><span class="p">,</span>           <span class="c1"># tif 檔左上角的緯度</span>
+      <span class="s2">&quot;top_left_lon&quot;</span><span class="p">:</span> <span class="mf">120.1977</span><span class="p">,</span>          <span class="c1"># tif 檔左上角的經度</span>
+      <span class="s2">&quot;below_right_lat&quot;</span><span class="p">:</span> <span class="mf">22.9673</span><span class="p">,</span>         <span class="c1"># tif 檔右下角的緯度</span>
+      <span class="s2">&quot;below_right_lon&quot;</span><span class="p">:</span> <span class="mf">120.2033</span><span class="p">,</span>        <span class="c1"># tif 檔右下角的經度</span>
+
+      <span class="s2">&quot;device&quot;</span><span class="p">:</span> <span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;model_arch&quot;</span><span class="p">:</span> <span class="s1">&#39;yolo_nas_l&#39;</span><span class="p">,</span>
+      <span class="s2">&quot;sam_encoder_version&quot;</span><span class="p">:</span> <span class="s2">&quot;vit_h&quot;</span><span class="p">,</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>settings</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">STOREHOUSE</span> <span class="o">=</span> <span class="s2">&quot;storehouse&quot;</span>
+<span class="n">SPLITED_TIFS_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">STOREHOUSE</span><span class="p">,</span> <span class="s2">&quot;splited_tifs&quot;</span><span class="p">)</span>
+<span class="n">MASK_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">STOREHOUSE</span><span class="p">,</span> <span class="s2">&quot;masks&quot;</span><span class="p">)</span>
+
+<span class="n">complete_mask_filename</span> <span class="o">=</span> <span class="s2">&quot;map_mask&quot;</span>
+<span class="n">COMPLETE_MASK_JPG</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">STOREHOUSE</span><span class="p">,</span> <span class="n">complete_mask_filename</span> <span class="o">+</span> <span class="s2">&quot;.jpg&quot;</span><span class="p">)</span>
+<span class="n">COMPLETE_MASK_TIFF</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">STOREHOUSE</span><span class="p">,</span> <span class="n">complete_mask_filename</span> <span class="o">+</span> <span class="s2">&quot;.tiff&quot;</span><span class="p">)</span>
+<span class="n">COMPLETE_MASK_GEOTIFF</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">STOREHOUSE</span><span class="p">,</span> <span class="s2">&quot;geo&quot;</span> <span class="o">+</span> <span class="n">complete_mask_filename</span> <span class="o">+</span> <span class="s2">&quot;.tiff&quot;</span><span class="p">)</span>
+
+<span class="n">OUTPUT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">STOREHOUSE</span><span class="p">,</span> <span class="s2">&quot;output.shp&quot;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="initialize-directory">
+<h2>initialize directory<a class="headerlink" href="#initialize-directory" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="o">%</span><span class="n">cd</span> <span class="p">{</span><span class="n">HOME</span><span class="p">}</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">STOREHOUSE</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">SPLITED_TIFS_DIR</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">MASK_DIR</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-1-cropping-tif">
+<h2>Step 1 : Cropping tif<a class="headerlink" href="#step-1-cropping-tif" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">samgeo.common</span> <span class="kn">import</span> <span class="n">split_raster</span>
+
+<span class="n">split_raster</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;source_tiffile&quot;</span><span class="p">],</span> <span class="n">SPLITED_TIFS_DIR</span><span class="p">,</span> <span class="n">tile_size</span><span class="o">=</span><span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;tile_size&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step2-predict-bounding-box">
+<h2>Step2 : predict bounding box<a class="headerlink" href="#step2-predict-bounding-box" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">super_gradients.training</span> <span class="kn">import</span> <span class="n">models</span>
+
+<span class="k">def</span> <span class="nf">load_object_detection_</span><span class="p">(</span><span class="n">model_arch</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">checkpoint_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">device</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+
+    <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+        <span class="n">model_arch</span><span class="p">,</span>
+        <span class="n">num_classes</span><span class="o">=</span><span class="n">num_classes</span><span class="p">,</span>
+        <span class="n">checkpoint_path</span><span class="o">=</span><span class="n">checkpoint_path</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">model</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tifffile</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">supervision</span> <span class="k">as</span> <span class="nn">sv</span>
+
+<span class="n">tifs_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">SPLITED_TIFS_DIR</span><span class="p">)</span>
+<span class="n">box_predictor</span> <span class="o">=</span> <span class="n">load_object_detection_</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;model_arch&quot;</span><span class="p">],</span> <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;num_classes&quot;</span><span class="p">],</span>
+                         <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;object_detection_model_checkpoint_path&quot;</span><span class="p">],</span> <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;device&quot;</span><span class="p">])</span>
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;detections&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="n">num_tombs</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">tif</span> <span class="ow">in</span> <span class="n">tifs_dir</span><span class="p">:</span>
+    <span class="c1"># read tif as numpy array</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">tifffile</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">SPLITED_TIFS_DIR</span><span class="p">,</span> <span class="n">tif</span><span class="p">))</span>
+    <span class="n">img_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+    <span class="c1"># predict bounding box</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">box_predictor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">img_array</span><span class="p">,</span> <span class="n">conf</span><span class="o">=</span><span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;confidence_threshold&quot;</span><span class="p">]))[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">boxes</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">prediction</span><span class="o">.</span><span class="n">bboxes_xyxy</span>
+    <span class="n">num_tombs</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">boxes</span><span class="p">)</span>  <span class="c1"># compute the number of tombs</span>
+
+    <span class="c1"># make sv.Detections</span>
+    <span class="n">detection</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">Detections</span><span class="p">(</span>
+             <span class="n">xyxy</span><span class="o">=</span><span class="n">boxes</span><span class="p">,</span>
+             <span class="n">confidence</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">prediction</span><span class="o">.</span><span class="n">confidence</span><span class="p">,</span>
+             <span class="n">class_id</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">prediction</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+          <span class="p">)</span>
+    <span class="n">data</span><span class="p">[</span><span class="s2">&quot;detections&quot;</span><span class="p">][</span><span class="n">tif</span><span class="p">]</span> <span class="o">=</span> <span class="n">detection</span>
+
+
+
+<span class="c1"># finally we get the total number of tombs</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;the number of tombs is </span><span class="si">{</span><span class="n">num_tombs</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;num_tombs&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">num_tombs</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-3-predict-mask">
+<h2>Step 3 : predict_mask<a class="headerlink" href="#step-3-predict-mask" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">segment_anything</span> <span class="kn">import</span> <span class="n">sam_model_registry</span><span class="p">,</span> <span class="n">SamPredictor</span>
+
+<span class="k">def</span> <span class="nf">segment</span><span class="p">(</span><span class="n">sam_predictor</span><span class="p">:</span> <span class="s2">&quot;SamPredictor&quot;</span><span class="p">,</span> <span class="n">image</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">xyxy</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="n">sam_predictor</span><span class="o">.</span><span class="n">set_image</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+    <span class="n">result_masks</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">box</span> <span class="ow">in</span> <span class="n">xyxy</span><span class="p">:</span>
+        <span class="n">masks</span><span class="p">,</span> <span class="n">scores</span><span class="p">,</span> <span class="n">logits</span> <span class="o">=</span> <span class="n">sam_predictor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+            <span class="n">box</span><span class="o">=</span><span class="n">box</span><span class="p">,</span>
+            <span class="n">multimask_output</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+        <span class="n">result_masks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">masks</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">result_masks</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">load_segment_anything_model</span><span class="p">(</span><span class="n">sam_encoder_version</span><span class="p">,</span> <span class="n">sam_checkpoint_path</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+    <span class="n">sam</span> <span class="o">=</span> <span class="n">sam_model_registry</span><span class="p">[</span><span class="n">sam_encoder_version</span><span class="p">](</span><span class="n">checkpoint</span><span class="o">=</span><span class="n">sam_checkpoint_path</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">sam_predictor</span> <span class="o">=</span> <span class="n">SamPredictor</span><span class="p">(</span><span class="n">sam</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sam_predictor</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+
+<span class="n">tifs_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">SPLITED_TIFS_DIR</span><span class="p">)</span>
+<span class="n">sam_predictor</span> <span class="o">=</span> <span class="n">load_segment_anything_model</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;sam_encoder_version&quot;</span><span class="p">],</span> <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;sam_checkpoint_path&quot;</span><span class="p">],</span>
+                                    <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;device&quot;</span><span class="p">])</span>
+<span class="n">mask_annotator</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">MaskAnnotator</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">tif</span> <span class="ow">in</span> <span class="n">tifs_dir</span><span class="p">:</span>
+    <span class="c1"># read tif as numpy array</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="n">tifffile</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">SPLITED_TIFS_DIR</span><span class="p">,</span> <span class="n">tif</span><span class="p">))</span>
+    <span class="n">img_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+    <span class="c1"># make detection&#39;s mask</span>
+    <span class="n">data</span><span class="p">[</span><span class="s2">&quot;detections&quot;</span><span class="p">][</span><span class="n">tif</span><span class="p">]</span><span class="o">.</span><span class="n">mask</span> <span class="o">=</span> <span class="n">segment</span><span class="p">(</span>
+          <span class="n">sam_predictor</span><span class="o">=</span><span class="n">sam_predictor</span><span class="p">,</span>
+          <span class="n">image</span><span class="o">=</span><span class="n">img_array</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+          <span class="n">xyxy</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;detections&quot;</span><span class="p">][</span><span class="n">tif</span><span class="p">]</span><span class="o">.</span><span class="n">xyxy</span>
+          <span class="p">)</span>
+
+    <span class="c1"># produce mask and save as image</span>
+    <span class="n">blank</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">img_array</span><span class="p">)</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">mask_annotator</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">scene</span><span class="o">=</span><span class="n">blank</span><span class="p">,</span> <span class="n">detections</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;detections&quot;</span><span class="p">][</span><span class="n">tif</span><span class="p">])</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="s2">&quot;RGB&quot;</span><span class="p">)</span>
+    <span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">MASK_DIR</span><span class="p">,</span> <span class="s2">&quot;mask&quot;</span> <span class="o">+</span> <span class="n">tif</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.jpg&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-4-merge-image">
+<h2>Step 4 : merge image<a class="headerlink" href="#step-4-merge-image" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">gdal</span>
+
+<span class="k">def</span> <span class="nf">read_tif</span><span class="p">(</span><span class="n">tif_path</span><span class="p">):</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">gdal</span><span class="o">.</span><span class="n">Open</span><span class="p">(</span><span class="n">tif_path</span><span class="p">)</span>
+    <span class="n">row</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">RasterXSize</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">RasterYSize</span>
+    <span class="k">return</span> <span class="n">row</span><span class="p">,</span> <span class="n">col</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">read_tif</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;source_tiffile&quot;</span><span class="p">])</span>
+<span class="n">size</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;tile_size&quot;</span><span class="p">]</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;RGB&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
+<span class="n">mask_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">MASK_DIR</span><span class="p">)</span>
+
+<span class="c1"># collage small image to a complete image</span>
+<span class="k">for</span> <span class="n">mask_filename</span> <span class="ow">in</span> <span class="n">mask_dir</span><span class="p">:</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">MASK_DIR</span><span class="p">,</span> <span class="n">mask_filename</span><span class="p">))</span>
+    <span class="n">name_list</span> <span class="o">=</span> <span class="n">mask_filename</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span>  <span class="c1"># ex. turn mask_0_11.jpg into [&#39;mask&#39;, &#39;0&#39;, &#39;11&#39;]</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">name_list</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>      <span class="c1"># the 1th value in name_list indicate the order in x ray</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">name_list</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>      <span class="c1"># the 2th value in name_list indicate the order in y ray (see samgeo.common.split_raster())</span>
+    <span class="n">img</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">size</span><span class="p">,</span> <span class="n">j</span> <span class="o">*</span> <span class="n">size</span><span class="p">))</span>
+
+<span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">COMPLETE_MASK_JPG</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-5-1-image-to-geotiff">
+<h2>Step 5 - 1: image to geotiff<a class="headerlink" href="#step-5-1-image-to-geotiff" title="Permalink to this heading">#</a></h2>
+<p>執行這一步時很吃 RAM。如果 Colab 工作階段因異常原因而中止，那滿有可能是 RAM 不足的問題</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">aspose.words</span> <span class="k">as</span> <span class="nn">aw</span>
+<span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">from</span> <span class="nn">rasterio.transform</span> <span class="kn">import</span> <span class="n">from_origin</span>
+
+
+<span class="n">COMPLETE_MASK_JPG</span> <span class="o">=</span> <span class="s2">&quot;/content/drive/MyDrive/project_NanShang/resources/map_mask_tomb2.jpg&quot;</span>
+
+<span class="k">def</span> <span class="nf">jpg2tiff</span><span class="p">():</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">aw</span><span class="o">.</span><span class="n">Document</span><span class="p">()</span>
+    <span class="n">builder</span> <span class="o">=</span> <span class="n">aw</span><span class="o">.</span><span class="n">DocumentBuilder</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">insert_image</span><span class="p">(</span><span class="n">COMPLETE_MASK_JPG</span><span class="p">)</span>
+    <span class="n">shape</span><span class="o">.</span><span class="n">image_data</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">COMPLETE_MASK_TIFF</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">tiff2goetiff</span><span class="p">(</span><span class="n">below_right_lat</span><span class="p">,</span> <span class="n">top_left_lat</span><span class="p">,</span> <span class="n">below_right_lon</span><span class="p">,</span> <span class="n">top_left_lon</span><span class="p">):</span>
+    <span class="c1"># Read the input TIFF</span>
+    <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">COMPLETE_MASK_TIFF</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">dtype</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">dtypes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">count</span>
+        <span class="n">height</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">width</span>
+
+    <span class="c1"># compute horizontal pixel size and vertical pixel size in degrees</span>
+    <span class="n">dis_lat</span> <span class="o">=</span> <span class="n">below_right_lat</span> <span class="o">-</span> <span class="n">top_left_lat</span>
+    <span class="n">dis_lon</span> <span class="o">=</span> <span class="n">below_right_lon</span> <span class="o">-</span> <span class="n">top_left_lon</span>
+    <span class="n">pixel_size_x</span> <span class="o">=</span> <span class="n">dis_lon</span> <span class="o">/</span> <span class="n">width</span>  <span class="c1"># Example: horizontal pixel size in degrees</span>
+    <span class="n">pixel_size_y</span> <span class="o">=</span> <span class="n">dis_lat</span> <span class="o">/</span> <span class="n">height</span>  <span class="c1"># Example: vertical pixel size in degrees</span>
+
+    <span class="c1"># Define geospatial information</span>
+    <span class="n">crs</span> <span class="o">=</span> <span class="s1">&#39;EPSG:4326&#39;</span>  <span class="c1"># Example: WGS 84</span>
+
+    <span class="c1"># Define the geotransform</span>
+    <span class="n">transform</span> <span class="o">=</span> <span class="n">from_origin</span><span class="p">(</span><span class="n">top_left_lon</span><span class="p">,</span> <span class="n">top_left_lat</span><span class="p">,</span> <span class="n">pixel_size_x</span><span class="p">,</span> <span class="n">pixel_size_y</span><span class="p">)</span>
+
+    <span class="c1"># Write the GeoTIFF file</span>
+    <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span>
+            <span class="n">COMPLETE_MASK_GEOTIFF</span><span class="p">,</span>
+            <span class="s1">&#39;w&#39;</span><span class="p">,</span>
+            <span class="n">driver</span><span class="o">=</span><span class="s1">&#39;GTiff&#39;</span><span class="p">,</span>
+            <span class="n">height</span><span class="o">=</span><span class="n">height</span><span class="p">,</span>
+            <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span>
+            <span class="n">count</span><span class="o">=</span><span class="n">count</span><span class="p">,</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+            <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">,</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span>
+    <span class="p">)</span> <span class="k">as</span> <span class="n">dst</span><span class="p">:</span>
+        <span class="n">dst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">jpg2tiff</span><span class="p">()</span>
+<span class="n">tiff2goetiff</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;below_right_lat&quot;</span><span class="p">],</span> <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;top_left_lat&quot;</span><span class="p">],</span>
+                  <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;below_right_lon&quot;</span><span class="p">],</span> <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;top_left_lon&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-5-2-geotiff-to-shp">
+<h2>Step 5 - 2: geotiff to shp<a class="headerlink" href="#step-5-2-geotiff-to-shp" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">samgeo.common</span> <span class="kn">import</span> <span class="n">raster_to_shp</span>
+
+<span class="n">raster_to_shp</span><span class="p">(</span><span class="n">COMPLETE_MASK_GEOTIFF</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./books/how_to_use_this_module"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Training_object_detection_model_resultbook.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Training object detection model resultbook</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#before-you-start">⚡ Before you start</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-package">install package</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inputs-and-setting">inputs and setting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initialize-directory">initialize directory</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-cropping-tif">Step 1 : Cropping tif</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step2-predict-bounding-box">Step2 : predict bounding box</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-predict-mask">Step 3 : predict_mask</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-merge-image">Step 4 : merge image</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-1-image-to-geotiff">Step 5 - 1: image to geotiff</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-2-geotiff-to-shp">Step 5 - 2: geotiff to shp</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
