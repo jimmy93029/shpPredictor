@@ -354,6 +354,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mask">mask 預測結果比較</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">原圖</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">遮罩後的圖檔</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-performance">model performance 分析</a></li>
@@ -374,16 +375,19 @@ document.write(`
 <h2>mask 預測結果比較<a class="headerlink" href="#mask" title="Permalink to this heading">#</a></h2>
 <section id="id2">
 <h3>原圖<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
-<figure class="align-left" id="id3">
-<a class="reference internal image-reference" href="../_images/Nanshan2_original.png"><img alt="../_images/Nanshan2_original.png" src="../_images/Nanshan2_original.png" style="width: 1021.9999999999999px; height: 548.0999999999999px;" /></a>
+<figure class="align-left" id="id4">
+<a class="reference internal image-reference" href="../_images/Nanshan2_original.png"><img alt="../_images/Nanshan2_original.png" src="../_images/Nanshan2_original.png" style="width: 730.0px; height: 391.5px;" /></a>
 <figcaption>
-<p><span class="caption-text">original</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">original</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<figure class="align-left" id="id4">
-<a class="reference internal image-reference" href="../_images/Nanshan2_on_mask.png"><img alt="../_images/Nanshan2_on_mask.png" src="../_images/Nanshan2_on_mask.png" style="width: 1194.1999999999998px; height: 561.4px;" /></a>
+</section>
+<section id="id3">
+<h3>遮罩後的圖檔<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<figure class="align-left" id="id5">
+<a class="reference internal image-reference" href="../_images/Nanshan2_on_mask.png"><img alt="../_images/Nanshan2_on_mask.png" src="../_images/Nanshan2_on_mask.png" style="width: 853.0px; height: 401.0px;" /></a>
 <figcaption>
-<p><span class="caption-text">masked</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+<p><span class="caption-text">masked</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <ul class="simple">
@@ -394,7 +398,12 @@ document.write(`
 </section>
 <section id="model-performance">
 <h2>model performance 分析<a class="headerlink" href="#model-performance" title="Permalink to this heading">#</a></h2>
-<p><img alt="img.png" src="../_images/performance.png" /></p>
+<figure class="align-left" id="id6">
+<a class="reference internal image-reference" href="../_images/performance.png"><img alt="../_images/performance.png" src="../_images/performance.png" style="width: 717.5px; height: 149.79999999999998px;" /></a>
+<figcaption>
+<p><span class="caption-text">performance</span><a class="headerlink" href="#id6" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <ul class="simple">
 <li><p>在製作 Model 時，我評估對我影響最大的是 false positive, 也就是”錯判成墓物件的其他物品”。所以為了避免這些東西的存在
 我將 score_threshold 設為 0.6，目的就是為了讓 bounding box 判定的更嚴格。</p></li>
@@ -455,6 +464,7 @@ precision 大約 0.9。這是意料之內的結果</p></li>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mask">mask 預測結果比較</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">原圖</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">遮罩後的圖檔</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-performance">model performance 分析</a></li>

@@ -32,6 +32,7 @@ align: left
 performance
 ```
 
+
 * 在製作 Model 時，我評估對我影響最大的是 false positive, 也就是"錯判成墓物件的其他物品"。所以為了避免這些東西的存在
 我將 score_threshold 設為 0.6，目的就是為了讓 bounding box 判定的更嚴格。
 
